@@ -1,0 +1,32 @@
+<svg width="50" height="52" viewBox="0 0 50 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g id="Pages">
+    <mask id="mask0_201_2" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="50" height="52">
+      <g id="pages_mask">
+        <g id="text">
+          <path id="Line 3" d="M18.87 33.8969H42.7161" stroke="black" stroke-width="1.58974" />
+          <path id="Line 2" d="M18.87 29.1277H42.7161" stroke="black" stroke-width="1.58974" />
+          <path id="Line 1" d="M22.0495 24.3585H42.7161" stroke="black" stroke-width="1.58974" />
+        </g>
+        <g id="file" style="mix-blend-mode:multiply">
+          <path
+            d="M12.511 1.58716e-06H15.6905L38.7418 0L37.152 2.89695V13.2303H45.8956V16.4098H37.152H33.9726V3.17946H15.6905L15.6905 45.82H45.8956V13.2303L37.152 2.89695L38.7418 0L49.0751 11.6405V48.9995H12.511V27.8206L12.511 1.58716e-06Z"
+            fill="black" />
+        </g>
+        <path id="back-page"
+          d="M0.0239882 3.42056L3.00975 3.12861L15.0423 1.70437L15.3341 4.70751L3.3017 6.11437L7.4377 48.4126L32.0914 45.8811L32.3833 48.8668L4.74389 51.6904L0.0239882 3.42056Z"
+          fill="black" />
+      </g>
+    </mask>
+    <g mask="url(#mask0_201_2)">
+      <path id="Gradient" d="M109.485 -46.3851H-49.489V112.589H109.485V-46.3851Z"
+        fill="url(#paint0_linear_201_2)" />
+    </g>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear_201_2" x1="29.9982" y1="-46.3851" x2="29.9982" y2="112.589"
+      gradientUnits="userSpaceOnUse">
+      <stop offset="0.3" stop-color="#4F772D" />
+      <stop offset="0.6" stop-color="#90A955" />
+    </linearGradient>
+  </defs>
+</svg>

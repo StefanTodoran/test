@@ -1,0 +1,163 @@
+// This file is for ugly or very large css rules, especially
+// ones that won't get edited a lot.
+
+@mixin vendor-prefix($name, $value)
+  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '')
+    #{$vendor}#{$name}: #{$value}
+
+.vignette 
+  position: fixed
+  height: 100vh
+  width: 100vw
+  top: 0
+  left: 0
+  pointer-events: none
+  z-index: 11
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.5) 95%)
+  transition: opacity 1s ease
+
+  // @include vendor-prefix('animation', 'ease random-fade 10s infinite')
+  opacity: 0.5
+
+@keyframes random-fade 
+  0%  
+    opacity: 0.4 
+  10%  
+    opacity: 0.5 
+  20%  
+    opacity: 0.35 
+  30%  
+    opacity: 0.4
+  40%  
+    opacity: 0.5 
+  50%  
+    opacity: 0.4 
+  60%  
+    opacity: 0.3 
+  70%  
+    opacity: 0.55 
+  80%  
+    opacity: 0.4
+  90%  
+    opacity: 0.25 
+  100%  
+    opacity: 0.4 
+
+.grain 
+  position: fixed
+  height: 200vh
+  width: 200vw
+  top: -50%
+  left: -50%
+  pointer-events: none
+  opacity: 0.8
+  background-image: url(../assets/noise.png)
+
+.grain.active 
+  @include vendor-prefix('animation', 'grain 4s steps(6) infinite')
+
+@keyframes grain 
+  0%, 100% 
+    transform: translate(0,0)
+  10% 
+    transform: translate(-5%,-10%)
+  30% 
+    transform: translate(3%,-15%)
+  50% 
+    transform: translate(12%,9%)
+  70% 
+    transform: translate(9%,4%)
+  90% 
+    transform: translate(-1%,7%)
+
+/* ============== */
+/* 📝 MENU STYLES */
+#menu-container 
+  position: fixed
+  display: flex
+  flex-direction: row
+  justify-content: center
+  top: 0
+  right: 0
+  left: 0
+  z-index: 5
+  pointer-events: none
+
+#menu 
+  margin-top: 10px
+  height: min(15vmin, 75px)
+  pointer-events: auto
+
+.menu-btn 
+  cursor: pointer
+  fill: rgba(0, 0, 0, 0)
+
+#indicator 
+  r: 17px
+  cy: 53px
+  transition: cx 0.5s ease
+
+#indicator.home 
+  cx: 83px
+  @include vendor-prefix('animation', 'squeeze-a 0.5s ease forwards')
+
+#indicator.freelance 
+  cx: 202px
+  @include vendor-prefix('animation', 'squeeze-b 0.5s ease forwards')
+
+#indicator.projects 
+  cx: 322px
+  @include vendor-prefix('animation', 'squeeze-c 0.5s ease forwards')
+
+/* 
+ * All three of the following animations are
+ * the same, but we give them different names
+ * so that when the class is changed the animation
+ * runs again.
+ */
+@keyframes squeeze-a 
+  0% 
+    r: 17
+    filter: none
+  20% 
+    r: 4
+  50% 
+    r: 2
+    filter: blur(2px)
+  80% 
+    r: 4
+  100% 
+    r: 17
+    filter: none
+
+@keyframes squeeze-b 
+  0% 
+    r: 17
+    filter: none
+  20% 
+    r: 4
+  50% 
+    r: 2
+    filter: blur(2px)
+  80% 
+    r: 4
+  100% 
+    r: 17
+    filter: none
+  
+@keyframes squeeze-c 
+  0% 
+    r: 17
+    filter: none
+  20% 
+    r: 4
+  50% 
+    r: 2
+    filter: blur(2px)
+  80% 
+    r: 4
+  100% 
+    r: 17
+    filter: none
+/* END MENU STYLES */
+/* =============== */
