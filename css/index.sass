@@ -7,7 +7,7 @@
 html
   scroll-behavior: smooth
 
-body 
+body, input, textarea
   margin: 0
   font-family: 'Poppins', sans-serif
 
@@ -17,7 +17,7 @@ $main-color: #4F772D
 $light-color: #90A955
 $highlight-color: #BECE7A  
 
-p 
+p, .title.small
   margin: 0
   font-size: 16px
 
@@ -42,17 +42,25 @@ img
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
-  transition: background-position 0.5s ease
-
 .title.clickable
   background: linear-gradient(1deg, $main-color 40%, $highlight-color 60%, $main-color 80%)
   background-size: 100% 200%
+  transition: opacity 0.5s ease
+  animation: glint 5s ease infinite
 
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
-.title.clickable:hover 
-  background-position: center
+.title.clickable:hover
+  opacity: 0.5
+  
+@keyframes glint
+  0%, 10%
+    background-position: top
+  50%, 60%
+    background-position: center
+  100%
+    background-position: top
 
 .subtitle
   font-size: 20px
@@ -62,8 +70,9 @@ img
   height: 10vh
 
 .icon-button
-  width: 100px
-  height: 100px
+  $btn-size: min(100px, 20vw)
+  width: $btn-size
+  height: $btn-size
   padding: 15px
   margin: 5px
 
@@ -121,7 +130,6 @@ img
   opacity: 0
   transform: translateX(-30%)
   transition: opacity 0.4s ease-out, transform 0.4s ease-out
-  filter: grayscale(1)
 
 .dynamic-item.inverse 
   transform: translateX(30%)
@@ -129,7 +137,6 @@ img
 .dynamic-item.shown 
   opacity: 1
   transform: none
-  filter: none
 /* END DYNAMIC ITEM SECTION */
 /* ======================== */
 
@@ -161,7 +168,7 @@ img
 .container
   display: flex
   flex-direction: column
-  justify-self: center
+  justify-content: center
   align-items: center
   padding: 30vh 10vw 10vh 10vw
 
@@ -211,24 +218,65 @@ img
   background-color: white
   border: 3px solid $dark-color
   border-radius: 10px
+  overflow-y: scroll
+
+  display: flex
+  flex-direction: column
 
 #modal-navigation  
   display: flex
   flex-direction: row
   justify-content: space-between
   align-items: center
-  position: absolute
-  top: 0
-  left: 0
-  right: 0
   padding: 5px 20px 10px 20px
-  border-radius: 10px 10px 0 0
+  // border-radius: 10px 10px 0 0
   border-bottom: 1px solid $main-color
   background-color: #eeeeee
 
 #modal.shown
   visibility: visible
   opacity: 1
+
+#modal-content
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+  flex-grow: 1
+
+// The text and contact form container
+#modal-desc
+  padding: min(2em, 2vw)
+
+#modal-desc p
+  max-width: 30em
+
+// The container for the graphics
+#modal-graphics
+  display: flex
+  flex-direction: column
+  align-items: self-end
+  justify-content: flex-end
+  justify-self: flex-end
+  padding: 2vmin
+
+#modal-graphics .title
+  font-size: min(60px, 5vmin)
+
+#modal-graphics .title:first-child
+  font-size: min(45px, 4vmin)
+
+#modal-icons, #modal-uic
+  max-height: 15vh
+
+#modal-vines
+  max-height: 12vh
+  max-width: 25vw
+
+#modal-icons
+  max-width: 30vw
+
+#modal-uic
+  max-width: 40vw
 /* END POP-UP MODAL */
 /* ================ */
 
@@ -243,7 +291,7 @@ $icon-size: min(10vw, 200px)
   left: 0
   margin: 0 10px
   filter: grayscale(1)
-  transition: filter 0.5s ease
+  transition: filter 0.5s ease, border 0.5s ease
   animation: scroll 25s linear infinite, edge-fade 25s linear infinite
   animation-delay: calc(var(--order) * -3600ms)
 
@@ -273,7 +321,29 @@ $icon-size: min(10vw, 200px)
   height: $icon-size
 /* END CLIENT ICON STYLES */
 /* ====================== */
-  
+
+
+/* ==================== */
+/* 📜 CUSTOM SCROLLBAR */
+::-webkit-scrollbar // Width
+  width: 12px
+
+#modal-window::-webkit-scrollbar // Width
+  width: 6px
+
+::-webkit-scrollbar-track // Track
+  background: #70904130
+  // background: none
+
+::-webkit-scrollbar-thumb // Handle
+  background: #31572C
+  border-radius: 6px
+
+::-webkit-scrollbar-thumb:hover // Handle:hover
+  background: #224120
+/* END CUSTOM SCROLLBAR */
+/* ==================== */
+
 .short-version 
   display: none
 
@@ -307,13 +377,36 @@ $icon-size: min(10vw, 200px)
 
   .title
     font-size: 30px
-  
-  p 
+
+  p, .title.small
     font-size: 14px
+
+  #modal-content
+    flex-direction: column
+    justify-content: space-between
+
+  #modal-graphics .title
+   font-size: 9vw
+
+  #modal-graphics .title:first-child
+    font-size: 7.5vw
+
+  #modal-icons, #modal-uic
+    max-height: 10vh
+
+  #modal-vines
+    max-height: 7.5vh
+    max-width: 50vw
+
+  #modal-icons
+    max-width: 60vw
+
+  #modal-uic
+    max-width: 75vw
 
 @media screen and (max-width: 425px)
   .title
     font-size: 25px
   
-  p 
+  p, .title.small
     font-size: 12px

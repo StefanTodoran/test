@@ -14,19 +14,19 @@
     preloadImage('./assets/svg/resume_hover.svg');
     preloadImage('./assets/svg/contact_hover.svg');
 
-    const contact_btn = document.getElementById('contact-btn');
-    const modal = document.getElementById('modal');
-    const close_btn_1 = document.getElementById('close-btn-1');
-    const close_btn_2 = document.getElementById('close-btn-2');
+    // const contact_btn = document.getElementById('contact-btn');
+    // const modal = document.getElementById('modal');
+    // const close_btn_1 = document.getElementById('close-btn-1');
+    // const close_btn_2 = document.getElementById('close-btn-2');
     
-    const toggle = function() { modal.classList.toggle('shown'); }
-    contact_btn.addEventListener('click', toggle);
-    close_btn_1.addEventListener('click', toggle);
-    close_btn_2.addEventListener('click', toggle);
-    modal.addEventListener('click', function(e) {
-      if (e.target !== this) { return; }
-      toggle();
-    });
+    // const toggle = function() { modal.classList.toggle('shown'); }
+    // contact_btn.addEventListener('click', toggle);
+    // close_btn_1.addEventListener('click', toggle);
+    // close_btn_2.addEventListener('click', toggle);
+    // modal.addEventListener('click', function(e) {
+    //   if (e.target !== this) { return; }
+    //   toggle();
+    // });
   }
 
   function preloadImage(url) {
@@ -67,20 +67,22 @@
 
     const freelance = document.getElementById('freelance-section');
     const projects = document.getElementById('projects-section');
+    const contact = document.getElementById('contact-section');
 
     const wrapper = document.getElementById('wrapper');
     const indicator = document.getElementById('indicator');
     wrapper.addEventListener('scroll', function() {
       let section = 'home';
       
-      if (wrapper.scrollTop > (freelance.offsetTop - 2 * freelance.offsetHeight)) {
+      if (scrolledPast(wrapper, contact)) {
+        section = 'contact';
+      } else if (scrolledPast(wrapper, projects)) {
+        section = 'projects';
+      } else if (scrolledPast(wrapper, freelance)) {
         section = 'freelance';
       }
-      if (wrapper.scrollTop > (projects.offsetTop - 2 * projects.offsetHeight)) {
-        section = 'projects';
-      }
 
-      indicator.classList.remove('home', 'freelance', 'projects');
+      indicator.classList.remove('home', 'freelance', 'projects', 'contact');
       indicator.classList.add(section);
     });
 
@@ -93,18 +95,26 @@
     });
 
     const freelance_btn = document.getElementById('freelance-btn');
-    const freelance_scroll =  function() {
-      wrapper.scrollTo({top: (freelance.offsetTop - 1.15 * freelance.offsetHeight), behavior: 'smooth'});
-    }
-    freelance_btn.addEventListener('click', freelance_scroll);
+    const scroll_arrow = document.getElementById('scroll-arrow');
+    freelance_btn.addEventListener('click', () => { scrollTo(wrapper, freelance) });
+    scroll_arrow.addEventListener('click', () => { scrollTo(wrapper, freelance) });
 
     const projects_btn = document.getElementById('projects-btn');
-    projects_btn.addEventListener('click', function() {
-      wrapper.scrollTo({top: (projects.offsetTop - 1.15 * projects.offsetHeight), behavior: 'smooth'});
-    });
+    projects_btn.addEventListener('click', () => { scrollTo(wrapper, projects) });
 
-    const scroll_arrow = document.getElementById('scroll-arrow');
-    scroll_arrow.addEventListener('click', freelance_scroll);
+    const contact_btn = document.getElementById('contact-btn');
+    const contact_icon = document.getElementById('contact-icon');
+    contact_btn.addEventListener('click', () => { scrollTo(wrapper, contact) });
+    contact_icon.addEventListener('click', () => { scrollTo(wrapper, contact) });
+
+  }
+
+  function scrolledPast(scroll_body, object) {
+    return (scroll_body.scrollTop > (object.offsetTop - 2 * object.offsetHeight));
+  }
+
+  function scrollTo(scroll_body, object) {
+    scroll_body.scrollTo({top: (object.offsetTop - 1.15 * object.offsetHeight), behavior: 'smooth'});
   }
   
 })();
