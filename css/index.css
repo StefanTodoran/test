@@ -306,6 +306,10 @@ img {
   background: linear-gradient(1deg, #4F772D 40%, #BECE7A 60%, #4F772D 80%);
   background-size: 100% 200%;
   transition: opacity 0.5s ease;
+  -webkit-animation: glint 5s linear infinite;
+  -moz-animation: glint 5s linear infinite;
+  -ms-animation: glint 5s linear infinite;
+  -o-animation: glint 5s linear infinite;
   animation: glint 5s linear infinite;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -457,13 +461,6 @@ img {
   padding: 30vh 10vw 10vh 10vw;
 }
 
-.hr {
-  width: 100%;
-  height: 1px;
-  background-color: #cfd1c9;
-  margin: 2em 0;
-}
-
 .footer-row, .row {
   display: flex;
   flex-direction: row;
@@ -480,112 +477,30 @@ img {
 
 /* END FOOTER STYLES */
 /* ================= */
-/* =============== */
-/* 🍿 POP-UP MODAL */
-#modal {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 10;
-  opacity: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  transition: visibility 0.5s ease, opacity 0.5s ease;
+/* ======================== */
+/* 💸 CLIENT PREVIEW STYLES */
+.hr {
+  width: 100%;
+  height: 1px;
+  background-color: #cfd1c9;
+  margin: 2em 0;
 }
 
-#modal-window {
-  width: calc(100vw - min(200px, 10vw));
-  height: calc(100vh - min(200px, 10vh));
-  position: relative;
-  background-color: white;
-  border: 3px solid #31572C;
-  border-radius: 10px;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-}
-
-#modal-navigation {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 20px 10px 20px;
-  border-bottom: 1px solid #4F772D;
-  background-color: #eeeeee;
-}
-
-#modal.shown {
-  visibility: visible;
-  opacity: 1;
-}
-
-#modal-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-
-#modal-desc {
-  padding: min(2em, 2vw);
-}
-
-#modal-desc p {
-  max-width: 30em;
-}
-
-#modal-graphics {
-  display: flex;
-  flex-direction: column;
-  align-items: self-end;
-  justify-content: flex-end;
-  justify-self: flex-end;
-  padding: 2vmin;
-}
-
-#modal-graphics .title {
-  font-size: min(60px, 5vmin);
-}
-
-#modal-graphics .title:first-child {
-  font-size: min(45px, 4vmin);
-}
-
-#modal-icons, #modal-uic {
-  max-height: 15vh;
-}
-
-#modal-vines {
-  max-height: 12vh;
-  max-width: 25vw;
-}
-
-#modal-icons {
-  max-width: 30vw;
-}
-
-#modal-uic {
-  max-width: 40vw;
-}
-
-/* END POP-UP MODAL */
-/* ================ */
-/* ===================== */
-/* 💸 CLIENT ICON STYLES */
 .client-icon {
   position: absolute;
   left: 0;
   margin: 0 10px;
   filter: grayscale(1);
   transition: filter 0.5s ease, border 0.5s ease;
+  -webkit-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
+  -moz-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
+  -ms-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
+  -o-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
   animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
+  -webkit-animation-delay: calc(var(--order) * -3600ms);
+  -moz-animation-delay: calc(var(--order) * -3600ms);
+  -ms-animation-delay: calc(var(--order) * -3600ms);
+  -o-animation-delay: calc(var(--order) * -3600ms);
   animation-delay: calc(var(--order) * -3600ms);
 }
 
@@ -623,8 +538,28 @@ img {
   height: min(10vw, 200px);
 }
 
-/* END CLIENT ICON STYLES */
-/* ====================== */
+#client-tip {
+  opacity: 0;
+}
+
+#client-tip.shown {
+  -webkit-animation: delayed-fade-in 5s forwards;
+  -moz-animation: delayed-fade-in 5s forwards;
+  -ms-animation: delayed-fade-in 5s forwards;
+  -o-animation: delayed-fade-in 5s forwards;
+  animation: delayed-fade-in 5s forwards;
+}
+
+@keyframes delayed-fade-in {
+  0%, 60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/* END CLIENT PREVIEW STYLES */
+/* ========================= */
 /* ==================== */
 /* 📜 CUSTOM SCROLLBAR */
 ::-webkit-scrollbar {
@@ -657,9 +592,6 @@ img {
 @media screen and (max-width: 1024px) {
   .parallax-content {
     max-height: 30vh;
-  }
-  #technivision {
-    transform: translate3d(-5vw, 0, 5px) scale(0.5);
   }
   .long-version {
     display: none;
