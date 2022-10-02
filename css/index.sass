@@ -11,6 +11,9 @@ body, input, textarea
   margin: 0
   font-family: 'Poppins', sans-serif
 
+body
+  height: 100vh
+  overflow: hidden
 
 $dark-color: #31572C
 $main-color: #4F772D
@@ -46,7 +49,7 @@ img
   background: linear-gradient(1deg, $main-color 40%, $highlight-color 60%, $main-color 80%)
   background-size: 100% 200%
   transition: opacity 0.5s ease
-  animation: glint 5s ease infinite
+  animation: glint 5s linear infinite
 
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
