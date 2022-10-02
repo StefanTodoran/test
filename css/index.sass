@@ -347,6 +347,9 @@ $icon-size: min(10vw, 200px)
 /* END CUSTOM SCROLLBAR */
 /* ==================== */
 
+// When an element won't work well on both desktop and mobile
+// views, put two elements and give the desktop version class
+// of .long-version, and the mobile version .short-version
 .short-version 
   display: none
 
@@ -413,3 +416,10 @@ $icon-size: min(10vw, 200px)
   
   p, .title.small
     font-size: 12px
+  
+  .title.tiny-width-fix
+    font-size: 22px
+
+@media screen and (max-width: 362px)
+  .title.tiny-width-fix
+    font-size: 18px

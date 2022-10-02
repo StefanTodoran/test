@@ -13,20 +13,6 @@
   
     preloadImage('./assets/svg/resume_hover.svg');
     preloadImage('./assets/svg/contact_hover.svg');
-
-    // const contact_btn = document.getElementById('contact-btn');
-    // const modal = document.getElementById('modal');
-    // const close_btn_1 = document.getElementById('close-btn-1');
-    // const close_btn_2 = document.getElementById('close-btn-2');
-    
-    // const toggle = function() { modal.classList.toggle('shown'); }
-    // contact_btn.addEventListener('click', toggle);
-    // close_btn_1.addEventListener('click', toggle);
-    // close_btn_2.addEventListener('click', toggle);
-    // modal.addEventListener('click', function(e) {
-    //   if (e.target !== this) { return; }
-    //   toggle();
-    // });
   }
 
   function preloadImage(url) {
@@ -114,7 +100,7 @@
   }
 
   function scrollTo(scroll_body, object) {
-    scroll_body.scrollTo({top: (object.offsetTop - 1.15 * object.offsetHeight), behavior: 'smooth'});
+    scroll_body.scrollTo({top: (object.offsetTop - object.offsetHeight), behavior: 'smooth'});
   }
   
 })();

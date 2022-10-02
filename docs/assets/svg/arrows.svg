@@ -1,0 +1,59 @@
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    #topArrow {
+      animation: fade 2.5s infinite;
+    }
+
+    #middleArrow {
+      animation: fade 2.5s infinite;
+      animation-delay: 0.4s;
+      opacity: 0;
+    }
+
+    #bottomArrow {
+      animation: fade 2.5s infinite;
+      animation-delay: 0.8s;
+      opacity: 0;
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      16% { opacity: 1; }
+      32% { opacity: 1; }
+      48% { opacity: 1; }
+      68% { opacity: 0; }
+      84% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+  </style>
+  <g id="arrows">
+    <mask id="mask0_3_57" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="27" y="5" width="97" height="140">
+      <g id="arrow_mask">
+        <g id="bottomArrow" style="mix-blend-mode:multiply">
+          <path id="Vector"
+            d="M75.0832 145L27 96.9168L38.3138 85.603L75.0832 122.373L111.853 85.603L123.167 96.9168L75.0832 145Z"
+            fill="black" />
+        </g>
+        <g id="middleArrow" style="mix-blend-mode:multiply">
+          <path id="Vector_2"
+            d="M75.0832 105L27 56.9168L38.3138 45.603L75.0832 82.3726L111.853 45.603L123.167 56.9168L75.0832 105Z"
+            fill="black" />
+        </g>
+        <g id="topArrow" style="mix-blend-mode:multiply">
+          <path id="Vector_3"
+            d="M75.0832 65L27 16.9168L38.3138 5.603L75.0832 42.3726L111.853 5.603L123.167 16.9168L75.0832 65Z"
+            fill="black" />
+        </g>
+      </g>
+    </mask>
+    <g mask="url(#mask0_3_57)">
+      <path id="gradient" d="M175 -21H-25V179H175V-21Z" fill="url(#paint0_linear_3_57)" />
+    </g>
+  </g>
+  <defs>
+    <linearGradient id="paint0_linear_3_57" x1="75" y1="-21" x2="75" y2="179" gradientUnits="userSpaceOnUse">
+      <stop offset="0.25" stop-color="#4F772D" />
+      <stop offset="0.75" stop-color="#90A955" />
+    </linearGradient>
+  </defs>
+</svg>

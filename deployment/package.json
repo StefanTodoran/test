@@ -1,0 +1,17 @@
+{
+  "name": "site_build_script",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Copies and minifies site contents to docs folder",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fs-extra": "^10.1.0",
+    "minify": "^9.1.0",
+    "try-to-catch": "^3.0.1"
+  }
+}

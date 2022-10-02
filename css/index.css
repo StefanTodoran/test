@@ -714,6 +714,14 @@ img {
   p, .title.small {
     font-size: 12px;
   }
+  .title.tiny-width-fix {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 362px) {
+  .title.tiny-width-fix {
+    font-size: 18px;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
