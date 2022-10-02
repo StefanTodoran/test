@@ -13,6 +13,9 @@
   
     preloadImage('./assets/svg/resume_hover.svg');
     preloadImage('./assets/svg/contact_hover.svg');
+
+    const loader = document.getElementById('loader-container');
+    loader.classList.add('loaded');
   }
 
   function preloadImage(url) {
