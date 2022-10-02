@@ -254,6 +254,11 @@ body {
   overflow: hidden;
 }
 
+::selection {
+  background-color: rgba(144, 169, 85, 0.6);
+  color: white;
+}
+
 p, .title.small {
   margin: 0;
   font-size: 16px;
@@ -268,6 +273,7 @@ a, .clickable {
 }
 
 img {
+  user-select: none;
   -webkit-user-drag: none;
   -moz-user-drag: none;
   -ms-user-drag: none;

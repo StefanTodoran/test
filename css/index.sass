@@ -20,6 +20,10 @@ $main-color: #4F772D
 $light-color: #90A955
 $highlight-color: #BECE7A  
 
+::selection
+  background-color: #90A95599
+  color: white
+
 p, .title.small
   margin: 0
   font-size: 16px
@@ -31,6 +35,7 @@ a, .clickable
   cursor: pointer
 
 img
+  user-select: none
   @include vendor-prefix('user-drag', 'none')
 
 .title, .subtitle
