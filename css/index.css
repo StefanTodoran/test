@@ -449,6 +449,18 @@ img {
   bottom: 0;
 }
 
+#vine-1 {
+  left: 20vw;
+}
+
+#vine-2 {
+  right: 15vw;
+}
+
+#vine-1, #vine-2 {
+  max-height: 15vmin;
+}
+
 /* END PLANT DECORATIONS */
 /* ===================== */
 /* ================ */
@@ -627,8 +639,16 @@ img {
   .section-break {
     height: 15vh;
   }
+  #plant-1 {
+    top: 25vmin;
+    max-width: 15vmin;
+  }
+  #vine-1 {
+    left: 0;
+    max-height: 20vmin;
+  }
 }
-@media screen and (max-width: 768px) {
+@media s2reen and (max-width: 768px) {
   .parallax-anchor {
     max-width: 45vw;
     margin-left: -5vw;
