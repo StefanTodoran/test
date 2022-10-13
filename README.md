@@ -14,6 +14,8 @@ node build.js
 Make sure to manually minify the css file.
 
 ## TODO
-For some reason, the minifier used in `build.js` is really bad. It seems to be fine at doing the javascript and html files, but it somehow makes the css file <strong>bigger??</strong> At some point this needs to be looked at. 
+For some reason, the minifier used in `build.js` is unable to pass options to its css minifying dependency, and the documentation is unclear. There is a hack fix, but this should be looked at. It seems to be encoding background-image properties from css to base64, which is an odd default behavior for a supposed minifier...
 
-The site still loads in pretty slow, even with the minification, so looking in to something to either remedy that or adding a loader element to cover everything while the images and text are loaded would be a good idea.
+The site still loads in pretty slow, even with the minification, so looking in to cutting some of the image sizes and perhaps some compresion could help.
+
+Finally, the plant decorations look cool but I want the jungle to feel alive! Consider adding some falling leaves and giving the plants some subtle swaying in the wind animations?

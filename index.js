@@ -4,8 +4,7 @@
   window.addEventListener('load', init);
 
   /**
-   * Initialization function that should handle anything that needs to occur
-   * on page load (include changing from one page to another).
+   * Initialization function that should handle anything that needs to occur on page load.
    */
   function init() {
     setDynamicElementsObserver();
@@ -16,8 +15,15 @@
 
     const loader = document.getElementById('loader-container');
     loader.classList.add('loaded');
+
+    spawnLeaf();
+    setInterval(spawnLeaf, 2000);
   }
 
+  /**
+   * Forces loading of an asset.
+   * @param {string} url Relative path to the asset
+   */
   function preloadImage(url) {
     let img = new Image();
     img.src = url;
@@ -100,12 +106,48 @@
 
   }
 
+  /**
+   * Returns a boolean based on whether the provided object has been
+   * scrolled past, meaning it is more than halfway up the viewport.
+   * @param {Node} scroll_body The DOM element being scrolled
+   * @param {Node} object The child of scroll_body to check
+   * @returns {boolean} Whether or not the object has been scrolled past
+   */
   function scrolledPast(scroll_body, object) {
     return (scroll_body.scrollTop > (object.offsetTop - 2 * object.offsetHeight));
   }
 
+  /**
+   * @param {Node} scroll_body The DOM element being scrolled
+   * @param {Node} object The child of scroll_body to scroll to
+   */
   function scrollTo(scroll_body, object) {
     scroll_body.scrollTo({top: (object.offsetTop - object.offsetHeight), behavior: 'smooth'});
+  }
+
+  // Shorthand helper function for getting a random integer
+  // between min and max (inclusive).
+
+  /**
+   * @param {number} min The minimum number that should be possible
+   * @param {number} max The maximum number that should be possible
+   * @returns A random integer number between min and max (inclusive)
+   */
+  function random(min, max) {
+    return Math.max(min, Math.round(Math.random() * max));
+  }
+
+  function spawnLeaf() {
+    const template = document.getElementById('leaf-template');
+    const leaf = template.cloneNode(false);
+
+    leaf.classList.remove('hidden');
+    leaf.style.setProperty('--duration', `${random(2,5)}s`);
+    leaf.style.setProperty('--position', `${random(5, 95)}vw`);
+    template.parentNode.insertBefore(leaf, template);
+    setTimeout(() => {
+      leaf.remove();
+    }, 6000);
   }
   
 })();

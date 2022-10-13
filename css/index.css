@@ -327,6 +327,11 @@ img {
   opacity: 0.5;
 }
 
+.title.long-version {
+  line-height: 1em;
+  margin-bottom: 0.2em;
+}
+
 @keyframes glint {
   0%, 10% {
     background-position: top;
@@ -426,46 +431,70 @@ img {
 /* ======================== */
 /* ==================== */
 /* 🌱 PLANT DECORATIONS */
-.side-decoration {
+.plant-decoration, .falling-decoration {
   position: absolute;
-  max-width: 20vmin;
-  max-height: 50vmin;
   pointer-events: none;
 }
 
-.side-decoration.right {
+.plant-decoration {
+  max-width: 20vmin;
+  max-height: 15vmin;
+}
+
+.plant-decoration.long {
+  max-height: 50vmin;
+}
+
+.plant-decoration.right {
   right: 0;
 }
 
-.side-decoration.left {
+.plant-decoration.left {
   left: 0;
 }
 
-.side-decoration.top {
+.plant-decoration.top {
   top: 0;
 }
 
-.side-decoration.bottom {
+.plant-decoration.bottom {
   bottom: 0;
 }
 
 #vine-1 {
-  left: 20vw;
+  left: 17.5vw;
 }
 
-#vine-2 {
-  right: 15vw;
+.falling-decoration {
+  height: 3vh;
+  right: var(--position);
+  -webkit-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
+  -moz-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
+  -ms-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
+  -o-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
+  animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
 }
 
-#vine-1, #vine-2 {
-  max-height: 15vmin;
+@keyframes fall {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100vh;
+  }
 }
-
+@keyframes fade-and-turn {
+  100% {
+    transform: rotate(3turn) scale(0.5);
+    opacity: 0;
+  }
+}
 /* END PLANT DECORATIONS */
 /* ===================== */
 /* ================ */
 /* 🦶 FOOTER STYLES */
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -622,6 +651,10 @@ img {
 
 /* END CUSTOM SCROLLBAR */
 /* ==================== */
+.hidden {
+  display: none;
+}
+
 .short-version {
   display: none;
 }
@@ -645,6 +678,8 @@ img {
   }
   #vine-1 {
     left: 0;
+  }
+  .plant-decoration {
     max-height: 20vmin;
   }
 }
