@@ -18,4 +18,4 @@ For some reason, the minifier used in `build.js` is unable to pass options to it
 
 The site still loads in pretty slow, even with the minification, so looking in to cutting some of the image sizes and perhaps some compresion could help.
 
-Finally, the plant decorations look cool but I want the jungle to feel alive! Consider adding some falling leaves and giving the plants some subtle swaying in the wind animations?
+Finally, the plant decorations look cool but I want the jungle to feel alive! Consider potential methods for giving the plants some subtle swaying in the wind animations. At the same time, the plant decorations are a bit visually busy, so some way to make them less distracting could help.

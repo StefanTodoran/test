@@ -182,9 +182,9 @@ img
   left: 17.5vw
 
 .falling-decoration
-  height: 3vh
+  height: min(4vw, 25px)
   right: var(--position)
-  animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards
+  animation: fall 8s ease forwards, fade-and-turn var(--duration) linear forwards
 
 @keyframes fall
   0%
@@ -194,7 +194,7 @@ img
 
 @keyframes fade-and-turn
   100%
-    transform: rotate(3turn) scale(0.5)
+    transform: rotate(4turn) scale(0.5)
     opacity: 0
 /* END PLANT DECORATIONS */
 /* ===================== */
@@ -380,6 +380,9 @@ $icon-size: min(10vw, 200px)
 
   #loader
     width: 85vw
+
+  #plant-1
+    content: url(../assets/svg/misc-plants-2.svg)
 
 @media screen and (max-width: 425px)
   .title

@@ -17,11 +17,6 @@
     loader.classList.add('loaded');
 
     spawnLeaf();
-    setInterval(() => {
-      if (document.visibilityState == "visible") {
-        spawnLeaf();
-      }
-    }, 3000);
   }
 
   /**
@@ -129,9 +124,6 @@
     scroll_body.scrollTo({top: (object.offsetTop - object.offsetHeight), behavior: 'smooth'});
   }
 
-  // Shorthand helper function for getting a random integer
-  // between min and max (inclusive).
-
   /**
    * @param {number} min The minimum number that should be possible
    * @param {number} max The maximum number that should be possible
@@ -142,16 +134,21 @@
   }
 
   function spawnLeaf() {
-    const template = document.getElementById('leaf-template');
-    const leaf = template.cloneNode(false);
+    // If we don't do this, then after switchign to another tab
+    // and back after a few seconds several leaves build up and fall at once.
+    if (document.visibilityState == "visible" && !scrolledPast(document.getElementById('wrapper'), document.getElementById('freelance-section'))) {
+      const template = document.getElementById('leaf-template');
+      const leaf = template.cloneNode(false);
 
-    leaf.classList.remove('hidden');
-    leaf.style.setProperty('--duration', `${random(2,5)}s`);
-    leaf.style.setProperty('--position', `${random(5, 95)}vw`);
-    template.parentNode.insertBefore(leaf, template);
-    setTimeout(() => {
-      leaf.remove();
-    }, 6000);
+      leaf.classList.remove('hidden');
+      leaf.style.setProperty('--duration', `${random(3, 7)}s`);
+      leaf.style.setProperty('--position', `${random(5, 95)}vw`);
+      template.parentNode.insertBefore(leaf, template);
+      setTimeout(() => {
+        leaf.remove();
+      }, 8000);
+    }
+    setTimeout(spawnLeaf, random(3, 8) * 1000);
   }
   
 })();
