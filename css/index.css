@@ -59,10 +59,6 @@
 }
 
 .grain.active {
-  -webkit-animation: grain 4s steps(6) infinite;
-  -moz-animation: grain 4s steps(6) infinite;
-  -ms-animation: grain 4s steps(6) infinite;
-  -o-animation: grain 4s steps(6) infinite;
   animation: grain 4s steps(6) infinite;
 }
 
@@ -119,37 +115,21 @@
 
 #indicator.home {
   cx: 83px;
-  -webkit-animation: squeeze-a 0.5s ease forwards;
-  -moz-animation: squeeze-a 0.5s ease forwards;
-  -ms-animation: squeeze-a 0.5s ease forwards;
-  -o-animation: squeeze-a 0.5s ease forwards;
   animation: squeeze-a 0.5s ease forwards;
 }
 
 #indicator.freelance {
   cx: 202px;
-  -webkit-animation: squeeze-b 0.5s ease forwards;
-  -moz-animation: squeeze-b 0.5s ease forwards;
-  -ms-animation: squeeze-b 0.5s ease forwards;
-  -o-animation: squeeze-b 0.5s ease forwards;
   animation: squeeze-b 0.5s ease forwards;
 }
 
 #indicator.projects {
   cx: 322px;
-  -webkit-animation: squeeze-c 0.5s ease forwards;
-  -moz-animation: squeeze-c 0.5s ease forwards;
-  -ms-animation: squeeze-c 0.5s ease forwards;
-  -o-animation: squeeze-c 0.5s ease forwards;
   animation: squeeze-c 0.5s ease forwards;
 }
 
 #indicator.contact {
   cx: 442px;
-  -webkit-animation: squeeze-d 0.5s ease forwards;
-  -moz-animation: squeeze-d 0.5s ease forwards;
-  -ms-animation: squeeze-d 0.5s ease forwards;
-  -o-animation: squeeze-d 0.5s ease forwards;
   animation: squeeze-d 0.5s ease forwards;
 }
 
@@ -306,10 +286,6 @@ img {
   background: linear-gradient(1deg, #4F772D 40%, #BECE7A 60%, #4F772D 80%);
   background-size: 100% 200%;
   transition: opacity 0.5s ease;
-  -webkit-animation: glint 5s linear infinite;
-  -moz-animation: glint 5s linear infinite;
-  -ms-animation: glint 5s linear infinite;
-  -o-animation: glint 5s linear infinite;
   animation: glint 5s linear infinite;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -468,10 +444,6 @@ img {
 .falling-decoration {
   height: 3vh;
   right: var(--position);
-  -webkit-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
-  -moz-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
-  -ms-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
-  -o-animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
   animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards;
 }
 
@@ -533,15 +505,7 @@ img {
   margin: 0 10px;
   filter: grayscale(1);
   transition: filter 0.5s ease, border 0.5s ease;
-  -webkit-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
-  -moz-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
-  -ms-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
-  -o-animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
   animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
-  -webkit-animation-delay: calc(var(--order) * -3600ms);
-  -moz-animation-delay: calc(var(--order) * -3600ms);
-  -ms-animation-delay: calc(var(--order) * -3600ms);
-  -o-animation-delay: calc(var(--order) * -3600ms);
   animation-delay: calc(var(--order) * -3600ms);
 }
 
@@ -584,10 +548,6 @@ img {
 }
 
 #client-tip.shown {
-  -webkit-animation: delayed-fade-in 5s forwards;
-  -moz-animation: delayed-fade-in 5s forwards;
-  -ms-animation: delayed-fade-in 5s forwards;
-  -o-animation: delayed-fade-in 5s forwards;
   animation: delayed-fade-in 5s forwards;
 }
 

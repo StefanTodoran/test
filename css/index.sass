@@ -55,7 +55,7 @@ img
   background-size: 100% 200%
   transition: opacity 0.5s ease
 
-  @include vendor-prefix('animation', 'glint 5s linear infinite')
+  animation: glint 5s linear infinite
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
@@ -184,7 +184,7 @@ img
 .falling-decoration
   height: 3vh
   right: var(--position)
-  @include vendor-prefix('animation', 'fall 6s ease forwards, fade-and-turn var(--duration) linear forwards')
+  animation: fall 6s ease forwards, fade-and-turn var(--duration) linear forwards
 
 @keyframes fall
   0%
@@ -240,8 +240,8 @@ $icon-size: min(10vw, 200px)
   margin: 0 10px
   filter: grayscale(1)
   transition: filter 0.5s ease, border 0.5s ease
-  @include vendor-prefix('animation', 'scroll 25s linear infinite, edge-fade 25s linear infinite')
-  @include vendor-prefix('animation-delay', 'calc(var(--order) * -3600ms)')
+  animation: scroll 25s linear infinite, edge-fade 25s linear infinite
+  animation-delay: calc(var(--order) * -3600ms)
 
 .client-icon:hover
   filter: none
@@ -272,7 +272,8 @@ $icon-size: min(10vw, 200px)
   opacity: 0
 
 #client-tip.shown
-  @include vendor-prefix('animation', 'delayed-fade-in 5s forwards')
+  animation: delayed-fade-in 5s forwards
+  // potentially change for regular fade-in and add animation-delay
 
 @keyframes delayed-fade-in
   0%, 60%

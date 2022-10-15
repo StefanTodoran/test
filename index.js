@@ -17,7 +17,11 @@
     loader.classList.add('loaded');
 
     spawnLeaf();
-    setInterval(spawnLeaf, 2000);
+    setInterval(() => {
+      if (document.visibilityState == "visible") {
+        spawnLeaf();
+      }
+    }, 3000);
   }
 
   /**

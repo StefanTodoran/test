@@ -1,10 +1,6 @@
 // This file is for ugly or very large css rules, especially
 // ones that won't get edited a lot.
 
-@mixin vendor-prefix($name, $value)
-  @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '')
-    #{$vendor}#{$name}: #{$value}
-
 .vignette 
   position: fixed
   height: 100vh
@@ -15,8 +11,6 @@
   z-index: 11
   background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 45%, rgba(0, 0, 0, 0.5) 95%)
   transition: opacity 1s ease
-
-  // @include vendor-prefix('animation', 'ease random-fade 10s infinite')
   opacity: 0.5
 
 @keyframes random-fade 
@@ -54,7 +48,7 @@
   background-image: url(../assets/noise.png)
 
 .grain.active 
-  @include vendor-prefix('animation', 'grain 4s steps(6) infinite')
+  animation: grain 4s steps(6) infinite
 
 @keyframes grain 
   0%, 100% 
@@ -99,19 +93,19 @@
 
 #indicator.home 
   cx: 83px
-  @include vendor-prefix('animation', 'squeeze-a 0.5s ease forwards')
+  animation: squeeze-a 0.5s ease forwards
 
 #indicator.freelance 
   cx: 202px
-  @include vendor-prefix('animation', 'squeeze-b 0.5s ease forwards')
+  animation: squeeze-b 0.5s ease forwards
 
 #indicator.projects 
   cx: 322px
-  @include vendor-prefix('animation', 'squeeze-c 0.5s ease forwards')
+  animation: squeeze-c 0.5s ease forwards
 
 #indicator.contact 
   cx: 442px
-  @include vendor-prefix('animation', 'squeeze-d 0.5s ease forwards')
+  animation: squeeze-d 0.5s ease forwards
 
 /* 
  * All three of the following animations are
