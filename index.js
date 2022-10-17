@@ -93,7 +93,7 @@
     const freelance_btn = document.getElementById('freelance-btn');
     const scroll_arrow = document.getElementById('scroll-arrow');
     freelance_btn.addEventListener('click', () => { scrollTo(wrapper, freelance) });
-    scroll_arrow.addEventListener('click', () => { scrollTo(wrapper, freelance) });
+    addActivationEvent(scroll_arrow, () => { scrollTo(wrapper, freelance) });
 
     const projects_btn = document.getElementById('projects-btn');
     projects_btn.addEventListener('click', () => { scrollTo(wrapper, projects) });
@@ -101,8 +101,20 @@
     const contact_btn = document.getElementById('contact-btn');
     const contact_icon = document.getElementById('contact-icon');
     contact_btn.addEventListener('click', () => { scrollTo(wrapper, contact) });
-    contact_icon.addEventListener('click', () => { scrollTo(wrapper, contact) });
+    addActivationEvent(contact_icon, () => { scrollTo(wrapper, contact) });
+  }
 
+  /**
+   * Adds both a click event listener add an enter keydown
+   * event listener for accessibility purposes.
+   * @param {Node} object The object to be watched by the listener 
+   * @param {Function} event The funciton to occur on click/enter
+   */
+  function addActivationEvent(object, event) {
+    object.addEventListener('click', event);
+    object.addEventListener('keydown', (evt) => { 
+      if (evt.code === 'Enter') { event(); }
+    });
   }
 
   /**
