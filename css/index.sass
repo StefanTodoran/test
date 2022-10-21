@@ -50,18 +50,42 @@ img
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
-.title.clickable
+// Clickable Title Styles
+.title.clickable, .title.clickable:hover::before, .title.clickable:hover::after
   background: linear-gradient(1deg, $main-color 40%, $highlight-color 60%, $main-color 80%)
   background-size: 100% 200%
-  transition: opacity 0.5s ease
 
   animation: glint 5s linear infinite
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
 .title.clickable:hover
-  opacity: 0.5
+  position: relative
   
+.title.clickable:hover::before, .title.clickable:hover::after
+  content: "> "
+  position: absolute
+  transform: translateY(-0.1em)
+
+.title.clickable:hover::before
+  left: -1em
+
+.title.clickable:hover::after
+  right: -1em
+  transform: translateY(-0.1em) scaleX(-1)
+// End Clickable Title
+
+// Small Clickable Title
+.title.clickable.small
+  transition: opacity 0.5s ease
+
+.title.clickable.small:hover
+  opacity: 0.5
+
+.title.clickable.small:hover::before
+  display: none
+// End Small Clickable Title
+
 .title.long-version
   line-height: 1em
   margin-bottom: 0.2em
@@ -78,7 +102,8 @@ img
   font-size: 20px
   color: gray
 
-.section-break 
+.section-break
+  position: relative 
   height: 10vh
 
 .icon-button
@@ -117,6 +142,7 @@ img
   flex-direction: row
   justify-content: center
   align-items: center
+  position: relative
   
   width: 100%
   margin: 10vh 0
@@ -155,16 +181,29 @@ img
 
 /* ==================== */
 /* 🌱 PLANT DECORATIONS */
+.branch-decoration
+  position: absolute
+  max-width: 50vw
+  z-index: -1
+  left: 0
+
+.branch-decoration.inverse
+  left: unset
+  right: 0
+  transform: scaleX(-1)
+
 .plant-decoration, .falling-decoration
   position: absolute
+
+.plant-decoration:not(.clickable)
   pointer-events: none
 
 .plant-decoration
-  max-width: 17.5vmin
+  max-width: 15vmin
   max-height: 12.5vmin
 
 .plant-decoration.long
-  max-height: 45vmin
+  max-height: 40vmin
 
 .plant-decoration.right 
   right: 0
@@ -181,6 +220,12 @@ img
 #vine-1
   left: 17.5vw
 
+#plant-1
+  top: 1vmin
+  
+#back-to-top-btn:hover
+  content: url(../assets/svg/back-to-top_hover.svg)
+  
 .falling-decoration
   height: min(4vw, 25px)
   right: var(--position)
@@ -351,15 +396,14 @@ $icon-size: min(10vw, 200px)
     height: 15vh
 
   #plant-1
-    top: 25vmin
+    top: 20vmin
     max-width: 15vmin
 
   #vine-1
     left: 0
 
   .plant-decoration
-    max-height: 20vmin
-    max-width: 20vmin
+    max-height: 17.5vmin
 
 @media screen and (max-width: 768px)
   .parallax-anchor
@@ -383,7 +427,14 @@ $icon-size: min(10vw, 200px)
     width: 85vw
 
   #plant-1
+    top: 25vmin
     content: url(../assets/svg/misc-plants-2.svg)
+
+  .mobile-vertical-fix
+    transform: translateY(30vh)
+
+  .branch-decoration
+    max-width: 60vw
 
 @media screen and (max-width: 425px)
   .title

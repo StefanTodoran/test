@@ -12,6 +12,7 @@
   
     preloadImage('./assets/svg/resume_hover.svg');
     preloadImage('./assets/svg/contact_hover.svg');
+    preloadImage('./assets/svg/back-to-top_hover.svg');
 
     const loader = document.getElementById('loader-container');
     loader.classList.add('loaded');
@@ -86,9 +87,10 @@
     // position if invisible circles on the menu are clicked.
 
     const home_btn = document.getElementById('home-btn');
-    home_btn.addEventListener('click', function() {
-      wrapper.scrollTo({top: 0, behavior: 'smooth'});
-    });
+    const back_btn = document.getElementById('back-to-top-btn');
+    const scroll_top = function() { wrapper.scrollTo({top: 0, behavior: 'smooth'}); }
+    home_btn.addEventListener('click', scroll_top);
+    back_btn.addEventListener('click', scroll_top);
 
     const freelance_btn = document.getElementById('freelance-btn');
     const scroll_arrow = document.getElementById('scroll-arrow');

@@ -25,6 +25,9 @@
 
   <section id="menu-container">
     <svg id="menu" width="536" height="106" viewBox="0 0 536 106" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path id="body-bg" fill-rule="evenodd" clip-rule="evenodd"
+        d="M104.637 57C102.756 67.2405 93.7843 75 83 75C70.8497 75 61 65.1503 61 53C61 40.8497 70.8497 31 83 31C93.7843 31 102.756 38.7595 104.637 49H180.363C182.244 38.7595 191.216 31 202 31C212.784 31 221.756 38.7595 223.637 49H300.257C302.138 38.7595 311.109 31 321.894 31L321.947 31.0001L322 31C332.784 31 341.756 38.7595 343.637 49H420.257C422.138 38.7595 431.109 31 441.894 31C454.044 31 463.894 40.8497 463.894 53C463.894 65.1503 454.044 75 441.894 75C431.109 75 422.138 67.2405 420.257 57H343.637C341.756 67.2405 332.784 75 322 75L321.947 74.9999L321.894 75C311.109 75 302.138 67.2405 300.257 57H223.637C221.756 67.2405 212.784 75 202 75C191.216 75 182.244 67.2405 180.363 57H104.637Z"
+        fill="white" stroke="white" stroke-width="2"/>
       <circle id="indicator" class="home" fill="url(#paint1_linear_14_9)" />
       <circle class="menu-btn" r="21" cx=83 cy=52 id="home-btn" />
       <circle class="menu-btn" r="21" cx=202 cy=52 id="freelance-btn" />
@@ -66,8 +69,17 @@
 
   <div id="wrapper">
 
+    <!-- 🌱 DECORATIONS -->
+    <img src="assets/svg/gray-side-vine.svg" class="plant-decoration top left long" style="max-width: 22.5vmin;" />
+    <img src="assets/svg/gray-hanging-vine.svg" class="plant-decoration top" style="max-height: 17.5vmin; right: 10vw;" />
+    <img src="assets/svg/misc-plants.svg" class="plant-decoration top left long" id="plant-1" />
+    <img src="assets/svg/hanging-vine-2.svg" class="plant-decoration top" id="vine-1" />
+    <img src="assets/svg/rope-vine.svg" class="plant-decoration top long-version" style="right: 15vw;" />
+    <img src="assets/svg/hanging-vine.svg" class="plant-decoration top right long" />
+    <!-- END DECORATIONS -->
+
     <!-- 🍃 FALLING LEAVES -->
-    <img src="assets/svg/leaf.svg" class="falling-decoration hidden" id="leaf-template"/>
+    <img src="assets/svg/leaf.svg" class="falling-decoration hidden" id="leaf-template" />
     <!-- END FALLING LEAVES -->
 
     <div id="intro-section">
@@ -80,10 +92,15 @@
         style="--hover-src: url('../assets/svg/contact_hover.svg')" />
     </div>
 
-    <div class="section-break" id="freelance-section"></div>
+    <div class="section-break" id="freelance-section">
+      <img src="assets/svg/sprouts.svg" class="plant-decoration top left" />
+      <img src="assets/svg/fan-leaves-1.svg" class="plant-decoration top right long" />
+    </div>
 
     <!-- FREELANCE SECTIONS -->
     <section class="parallax-section">
+      <img src="assets/svg/fan-leaves-2.svg" class="plant-decoration bottom left long mobile-vertical-fix" />
+      <img src="assets/svg/branch-1.svg" class="branch-decoration" />
       <div class="parallax-anchor dynamic-item">
         <div tabindex="0" class="title long-version">Web Design Origins</div>
         <div tabindex="0" class="title short-version">Origins</div>
@@ -104,6 +121,8 @@
     </section>
 
     <section class="container">
+      <img src="assets/svg/small-branch-1.svg" class="plant-decoration top right" />
+      <img src="assets/svg/small-branch-2.svg" class="plant-decoration bottom left" />
       <div class="row">
         <div class="hr"></div>
         <div class="subtitle" style="margin: 0 1em;">Recent&nbsp;Clients</div>
@@ -131,6 +150,8 @@
     <div class="section-break"></div>
 
     <section class="parallax-section">
+      <img src="assets/svg/tiny-shrubs.svg" class="plant-decoration top right" />
+      <img src="assets/svg/branch-2.svg" class="branch-decoration inverse" />
       <img class="parallax-content inverse long-version" src="assets/freelance_2.png" />
       <img class="parallax-content inverse short-version" src="assets/freelance_2a.png" />
       <div class="parallax-anchor dynamic-item inverse">
@@ -153,10 +174,14 @@
     </section>
     <!-- END FREELANCE -->
 
-    <div class="section-break" id="projects-section"></div>
+    <div class="section-break" id="projects-section">
+      <img src="assets/svg/large-shrub.svg" class="plant-decoration left long" />
+    </div>
 
     <!-- 🤖 TECHNIVISION SECTION -->
     <section class="parallax-section">
+      <img src="assets/svg/small-branch-3.svg" class="plant-decoration bottom right" />
+      <img src="assets/svg/branch-3.svg" class="branch-decoration" />
       <div class="parallax-anchor dynamic-item">
         <a class="clickable title tiny-width-fix" href="https://www.youtube.com/watch?v=tSOshI3OD_Q"
           target="_blank">Technivision</a>
@@ -166,13 +191,15 @@
           on their exercise technique.
         </p>
       </div>
-      <img class="parallax-content" src="assets/technivision.gif" />
+      <img class="parallax-content" src="assets/technivision.gif"/>
     </section>
 
     <div class="section-break"></div>
 
     <!-- 🍝 LINGUINI SECTION -->
     <section class="parallax-section">
+      <img src="assets/svg/small-shrubs.svg" class="plant-decoration top left" />
+      <img src="assets/svg/branch-1.svg" class="branch-decoration inverse" />
       <img class="parallax-content inverse" src="assets/linguini_2.png" />
       <div class="parallax-anchor dynamic-item inverse">
         <a class="clickable title" href="https://www.youtube.com/watch?v=HCLEnS05A-s" target="_blank">Linguini</a>
@@ -190,10 +217,14 @@
       </div>
     </section>
 
-    <div class="section-break"></div>
+    <div class="section-break">
+      <img src="assets/svg/monstera-leaf.svg" class="plant-decoration left long" />
+      <img src="assets/svg/fern-clump.svg" class="plant-decoration bottom right long" />
+    </div>
 
     <!-- 💃 DATINA SECTION -->
     <section class="parallax-section">
+      <img src="assets/svg/branch-2.svg" class="branch-decoration" />
       <div class="parallax-anchor dynamic-item">
         <a class="clickable title" href="https://datina-seattle.web.app/" target="_blank">DATINA</a>
         <p class="long-version">
@@ -211,10 +242,14 @@
       <img class="parallax-content" src="assets/datina.png" />
     </section>
 
-    <div class="section-break" id="contact-section"></div>
+    <div class="section-break" id="contact-section">
+      <img src="assets/svg/misc-plants-3.svg" class="plant-decoration bottom right long" />
+    </div>
 
     <!-- 📧 CONTACT SECTION -->
     <section class="parallax-section">
+      <img src="assets/svg/back-to-top.svg" class="plant-decoration top left long clickable mobile-vertical-fix" id="back-to-top-btn"/>
+      <img src="assets/svg/branch-3.svg" class="branch-decoration inverse" />
       <img class="parallax-content inverse" src="assets/svg/mashup.svg" />
       <div class="parallax-anchor dynamic-item inverse">
         <div class="title long-version">Work with me</div>
@@ -237,24 +272,19 @@
       <div class="footer-row">
         &copy; Stefan Todoran
       </div>
-      <img src="assets/svg/bamboo.svg" class="plant-decoration bottom long" style="right: 20vw; max-width: 35vmin;"/>
+      <img src="assets/svg/bamboo.svg" class="plant-decoration bottom" style="left: 30vw; max-width: 20vmin;" />
+      <img src="assets/svg/mushrooms.svg" class="plant-decoration bottom" style="right: 35vw;" />
+
+      <!-- TESTING -->
+      <img src="assets/svg/gray-side-shrubs.svg" class="plant-decoration right long" style="bottom: 15vmin;" />
+      <img src="assets/svg/gray-fan-leaves.svg" class="plant-decoration left long"
+        style="max-width: 15vmin; bottom: 12.5vmin;" />
+      <img src="assets/svg/cattail.svg" class="plant-decoration bottom left long" />
+      <img src="assets/svg/shrubs.svg" class="plant-decoration bottom right long" />
+      <!-- REMOVE -->
     </section>
 
   </div>
-
-  <!-- GRAY DECORATIONS -->
-  <img src="assets/svg/gray-side-vine.svg" class="plant-decoration top left long" style="max-width: 25vmin;"/>
-  <img src="assets/svg/gray-hanging-vine.svg" class="plant-decoration top" style="max-height: 17.5vmin; right: 10vw;"/>
-  <img src="assets/svg/gray-side-shrubs.svg" class="plant-decoration right long" style="bottom: 15vmin;"/>
-  <img src="assets/svg/gray-fan-leaves.svg" class="plant-decoration left long" style="max-width: 20vmin; bottom: 10vmin;"/>
-  <!-- 🌱 DECORATIONS -->
-  <img src="assets/svg/misc-plants.svg" class="plant-decoration top left long" id="plant-1"/>
-  <img src="assets/svg/hanging-vine-2.svg" class="plant-decoration top" id="vine-1"/>
-  <img src="assets/svg/rope-vine.svg" class="plant-decoration top long-version" style="right: 15vw;"/>
-  <img src="assets/svg/cattail.svg" class="plant-decoration bottom left long"/>
-  <img src="assets/svg/shrubs.svg" class="plant-decoration bottom right long"/>
-  <img src="assets/svg/hanging-vine.svg" class="plant-decoration top right long"/>
-
   <div class="vignette"></div>
 
   <script src="index.js" type="text/javascript"></script>

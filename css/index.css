@@ -282,10 +282,9 @@ img {
   text-fill-color: transparent;
 }
 
-.title.clickable {
+.title.clickable, .title.clickable:hover::before, .title.clickable:hover::after {
   background: linear-gradient(1deg, #4F772D 40%, #BECE7A 60%, #4F772D 80%);
   background-size: 100% 200%;
-  transition: opacity 0.5s ease;
   animation: glint 5s linear infinite;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -300,7 +299,34 @@ img {
 }
 
 .title.clickable:hover {
+  position: relative;
+}
+
+.title.clickable:hover::before, .title.clickable:hover::after {
+  content: "> ";
+  position: absolute;
+  transform: translateY(-0.1em);
+}
+
+.title.clickable:hover::before {
+  left: -1em;
+}
+
+.title.clickable:hover::after {
+  right: -1em;
+  transform: translateY(-0.1em) scaleX(-1);
+}
+
+.title.clickable.small {
+  transition: opacity 0.5s ease;
+}
+
+.title.clickable.small:hover {
   opacity: 0.5;
+}
+
+.title.clickable.small:hover::before {
+  display: none;
 }
 
 .title.long-version {
@@ -325,6 +351,7 @@ img {
 }
 
 .section-break {
+  position: relative;
   height: 10vh;
 }
 
@@ -365,6 +392,7 @@ img {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 100%;
   margin: 10vh 0;
   transform-style: preserve-3d;
@@ -407,18 +435,34 @@ img {
 /* ======================== */
 /* ==================== */
 /* 🌱 PLANT DECORATIONS */
+.branch-decoration {
+  position: absolute;
+  max-width: 50vw;
+  z-index: -1;
+  left: 0;
+}
+
+.branch-decoration.inverse {
+  left: unset;
+  right: 0;
+  transform: scaleX(-1);
+}
+
 .plant-decoration, .falling-decoration {
   position: absolute;
+}
+
+.plant-decoration:not(.clickable) {
   pointer-events: none;
 }
 
 .plant-decoration {
-  max-width: 17.5vmin;
+  max-width: 15vmin;
   max-height: 12.5vmin;
 }
 
 .plant-decoration.long {
-  max-height: 45vmin;
+  max-height: 40vmin;
 }
 
 .plant-decoration.right {
@@ -439,6 +483,14 @@ img {
 
 #vine-1 {
   left: 17.5vw;
+}
+
+#plant-1 {
+  top: 1vmin;
+}
+
+#back-to-top-btn:hover {
+  content: url(../assets/svg/back-to-top_hover.svg);
 }
 
 .falling-decoration {
@@ -633,15 +685,14 @@ img {
     height: 15vh;
   }
   #plant-1 {
-    top: 25vmin;
+    top: 20vmin;
     max-width: 15vmin;
   }
   #vine-1 {
     left: 0;
   }
   .plant-decoration {
-    max-height: 20vmin;
-    max-width: 20vmin;
+    max-height: 17.5vmin;
   }
 }
 @media screen and (max-width: 768px) {
@@ -666,7 +717,14 @@ img {
     width: 85vw;
   }
   #plant-1 {
+    top: 25vmin;
     content: url(../assets/svg/misc-plants-2.svg);
+  }
+  .mobile-vertical-fix {
+    transform: translateY(30vh);
+  }
+  .branch-decoration {
+    max-width: 60vw;
   }
 }
 @media screen and (max-width: 425px) {
