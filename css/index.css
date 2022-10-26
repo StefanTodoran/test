@@ -105,8 +105,26 @@
 .menu-btn {
   cursor: pointer;
   fill: rgba(0, 0, 0, 0);
+  transition: fill 0.5s ease;
 }
 
+.menu-btn:hover {
+  animation: menu-btn-pulse 1s ease infinite;
+}
+
+@media screen and (max-width: 425px) {
+  .menu-btn:hover {
+    animation: none;
+  }
+}
+@keyframes menu-btn-pulse {
+  0%, 100% {
+    fill: rgba(0, 0, 0, 0);
+  }
+  50% {
+    fill: rgba(79, 119, 45, 0.25);
+  }
+}
 #indicator {
   r: 17px;
   cy: 52px;
@@ -133,7 +151,7 @@
   animation: squeeze-d 0.5s ease forwards;
 }
 
-/* * All three of the following animations are
+/* * All four of the following animations are
  * * the same, but we give them different names
  * * so that when the class is changed the animation
  * * runs again.
