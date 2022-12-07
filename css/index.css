@@ -266,6 +266,11 @@ hr {
   border-color: #BECE7A;
 }
 
+a:focus, .clickable:focus, .tabbable:focus {
+  outline: 1px solid #4F772D;
+  border-radius: 5px;
+}
+
 a, .clickable {
   cursor: pointer;
 }
@@ -371,6 +376,11 @@ img {
 .section-break {
   position: relative;
   height: 10vh;
+}
+
+#buggy-icon-button {
+  width: calc(min(100px, 20vw) + 30px);
+  height: calc(min(100px, 20vw) + 30px);
 }
 
 .icon-button {

@@ -31,6 +31,10 @@ p, .title.small
 hr
   border-color: $highlight-color
 
+a:focus, .clickable:focus, .tabbable:focus
+  outline: 1px solid $main-color
+  border-radius: 5px
+
 a, .clickable
   cursor: pointer
 
@@ -106,8 +110,13 @@ img
   position: relative 
   height: 10vh
 
+$btn-size: min(100px, 20vw)
+
+#buggy-icon-button
+  width: calc($btn-size + 30px)
+  height: calc($btn-size + 30px)
+
 .icon-button
-  $btn-size: min(100px, 20vw)
   width: $btn-size
   height: $btn-size
   padding: 15px
