@@ -46,9 +46,10 @@
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('shown');
-        } else {
-          entry.target.classList.remove('shown');
         }
+        // else {
+        //   entry.target.classList.remove('shown');
+        // }
       })
     }, options);
     

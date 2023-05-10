@@ -305,7 +305,7 @@ img {
   text-fill-color: transparent;
 }
 
-.title.clickable, .title.clickable:hover::before, .title.clickable:hover::after {
+.title.clickable:not(.small), .title.clickable:hover::before, .title.clickable:hover::after {
   background: linear-gradient(1deg, #4F772D 40%, #BECE7A 60%, #4F772D 80%);
   background-size: 100% 200%;
   animation: glint 5s linear infinite;
@@ -343,12 +343,12 @@ img {
 
 .title.clickable.small {
   border-bottom: 1px solid transparent;
-  transition: border 0.5s ease, border-radius 0.5s ease;
+  border-radius: 0.2em;
+  transition: border 0.5s ease;
 }
 
 .title.clickable.small:hover {
-  border-radius: 0.2em;
-  border-bottom: 1px solid #4F772D;
+  border-bottom: 1px solid #90A955;
 }
 
 .title.clickable.small:hover::before, .title.clickable.small:hover::after {
@@ -361,6 +361,16 @@ img {
 
 .title.line-height-fix + p {
   margin-top: 5px;
+}
+
+.title.clickable.line-height-fix:hover::before, .title.clickable.line-height-fix:hover::after {
+  line-height: 1em;
+  top: 0;
+  transform: translateY(0.1em);
+}
+
+.title.clickable.line-height-fix:hover::after {
+  transform: translateY(0.1em) scaleX(-1);
 }
 
 .title.long-version {

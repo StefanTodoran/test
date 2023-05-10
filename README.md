@@ -27,4 +27,4 @@ The resume button used to have an issue where the `<a>` was bigger than its `<im
 
 Also, the resume button has weird tabbing issues. First tab press goes to the second icon button on the page, even though the resume button comes before it. It is still tabbable, one just has to press tab and then shift tab, as if it some kind of -1st element in the order. Super bizzare.
 
-In firefox (not an issue in chrome, need to check safari) if you move your mouse over a parallax section very fast during the animation, it just becomes invisible and stays that way. Seems to be an issue with firefox and animations, but haven't found a workaround.
+In firefox (not an issue in chrome, need to check safari) if you move your mouse over a parallax section very fast during the animation, it just becomes invisible and stays that way. This also just occurs when scrolling sometimes (difficult to reproduce). Seems to be an issue with firefox and animations, but haven't found a workaround.
