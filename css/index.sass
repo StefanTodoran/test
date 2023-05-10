@@ -377,19 +377,20 @@ $icon-size: min(10vw, 200px)
 
 /* ==================== */
 /* 📜 CUSTOM SCROLLBAR */
-::-webkit-scrollbar // Width
-  width: 12px
+@media screen and (min-width: 768px)
+  ::-webkit-scrollbar // Width
+    width: 12px
 
-::-webkit-scrollbar-track // Track
-  background: #70904130
-  // background: none
+  ::-webkit-scrollbar-track // Track
+    background: #70904130
+    // background: none
 
-::-webkit-scrollbar-thumb // Handle
-  background: #31572C
-  border-radius: 6px
+  ::-webkit-scrollbar-thumb // Handle
+    background: #31572C
+    border-radius: 6px
 
-::-webkit-scrollbar-thumb:hover // Handle:hover
-  background: #224120
+  ::-webkit-scrollbar-thumb:hover // Handle:hover
+    background: #224120
 /* END CUSTOM SCROLLBAR */
 /* ==================== */
 
@@ -471,6 +472,12 @@ $icon-size: min(10vw, 200px)
 
   .title.tiny-width-fix
     font-size: 22px
+
+  // may need to add a non inverse version
+  .parallax-content.inverse.tiny-width-fix
+    max-width: 45vw
+    margin-left: 2vw
+    margin-right: -3vw
 
   #back-to-top-btn
     max-width: 20vmin

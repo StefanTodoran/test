@@ -692,23 +692,21 @@ img {
 /* ================= */
 /* ==================== */
 /* 📜 CUSTOM SCROLLBAR */
-::-webkit-scrollbar {
-  width: 12px;
+@media screen and (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(112, 144, 65, 0.1882352941);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #31572C;
+    border-radius: 6px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #224120;
+  }
 }
-
-::-webkit-scrollbar-track {
-  background: rgba(112, 144, 65, 0.1882352941);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #31572C;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #224120;
-}
-
 /* END CUSTOM SCROLLBAR */
 /* ==================== */
 .hidden {
@@ -790,6 +788,11 @@ img {
   }
   .title.tiny-width-fix {
     font-size: 22px;
+  }
+  .parallax-content.inverse.tiny-width-fix {
+    max-width: 45vw;
+    margin-left: 2vw;
+    margin-right: -3vw;
   }
   #back-to-top-btn {
     max-width: 20vmin;
