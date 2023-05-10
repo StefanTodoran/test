@@ -14,6 +14,7 @@
 
   <meta charset="utf-8" />
   <title>Stefan's Portfolio</title>
+  <meta name="description" content="Interactive visual resume by Stefan Todoran. Frontend software engineer and designer.">
 
   <link href="css/index.css" rel="stylesheet" type="text/css" />
   <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -93,15 +94,18 @@
     <img src="assets/svg/leaf.svg" class="falling-decoration hidden" id="leaf-template" />
     <!-- END FALLING LEAVES -->
 
-    <div id="intro-section">
-      <a href="assets/Resume.pdf" target="_blank" id="buggy-icon-button" style="margin: 5px;">
-        <img class="icon-button clickable" src="assets/svg/resume.svg"
-          style="--hover-src: url('../assets/svg/resume_hover.svg'); margin: 0;" />
-      </a>
-      <img tabindex="0" id="scroll-arrow" class="icon-button clickable" src="assets/svg/arrows.svg" />
-      <img tabindex="0" id="contact-icon" class="icon-button clickable" src="assets/svg/contact.svg"
-        style="--hover-src: url('../assets/svg/contact_hover.svg')" />
-    </div>
+    <section id="intro-section">
+      <div>
+        <a href="assets/Resume.pdf" target="_blank" id="buggy-icon-button" style="margin: 5px;">
+          <img class="icon-button clickable" src="assets/svg/resume.svg"
+            style="--hover-src: url('../assets/svg/resume_hover.svg'); margin: 0;" />
+        </a>
+        <img tabindex="0" id="scroll-arrow" class="icon-button clickable" src="assets/svg/arrows.svg" />
+        <img tabindex="0" id="contact-icon" class="icon-button clickable" src="assets/svg/contact.svg"
+          style="--hover-src: url('../assets/svg/contact_hover.svg')" />
+      </div>
+      <p class="client-tip" style="--delay: 10">Scroll down to learn about my programming journey!</p>
+    </section>
 
     <div class="section-break" id="freelance-section">
       <img src="assets/svg/sprouts.svg" class="plant-decoration top left" />
@@ -122,9 +126,9 @@
           owners saw the website I had built, and before I knew it I had requests coming in from all over!
         </p>
         <p class="short-version">
-          My first foray into web design occurred shortly after I first learned to code, when I built a website for my
-          mother's small business. Many of her colleagues and other local business owners saw the website I had built
-          and before I knew it I had requests coming in from all over!
+          I had my first foray into web design building a website for my mother's small business. Many of her colleagues
+          and other local business owners saw the website I had built and before I knew it I had requests coming in from
+          all over!
         </p>
       </div>
       <img class="parallax-content long-version" src="assets/freelance_1.png" />
@@ -156,7 +160,7 @@
           <img src="assets/clients/7.png" /></a>
       </div>
       <div class="hr"></div>
-      <p id="client-tip" style="color: #e3e4e0; margin-top: -2em;">Click on client logos to visit their websites!</p>
+      <p class="client-tip" style="margin-top: -2em;">Click on client logos to visit their websites!</p>
     </section>
     <div class="section-break"></div>
 
@@ -197,10 +201,14 @@
       <div class="parallax-anchor dynamic-item">
         <a class="clickable title tiny-width-fix" href="https://www.youtube.com/watch?v=tSOshI3OD_Q"
           target="_blank">Technivision</a>
-        <p>
+        <p class="long-version">
           A “personal trainer in your pocket” hybrid mobile app that aims to help users achieve safer, more effective
           workouts. By utilizing computer vision and pose estimation, Technivision can provide individualized feedback
           on their exercise technique.
+        </p>
+        <p class="short-version">
+          A “personal trainer in your pocket” mobile app that helps users achieve safer, more effective workouts.
+          Utilizing computer vision and pose estimation, provides individualized feedback on exercise technique.
         </p>
       </div>
       <img class="parallax-content" src="assets/technivision.gif" />
@@ -222,9 +230,8 @@
           deeper understanding and assist learning.
         </p>
         <p class="short-version">
-          A light-weight chrome extension designed to help translate words and phrases at the press of a button.
-          Created with language learners in mind, linguini offers multiple translations to help users find deeper
-          understanding and assist learning.
+          A light-weight chrome extension created with language learners in mind, linguini offers multiple translations
+          to help users find deeper understanding and assist learning.
         </p>
       </div>
     </section>
@@ -235,7 +242,7 @@
     </div>
 
     <!-- 💃 DATINA SECTION -->
-    <section class="parallax-section">
+    <!-- <section class="parallax-section">
       <img src="assets/svg/branch-2.svg" class="branch-decoration" />
       <div class="parallax-anchor dynamic-item">
         <a class="clickable title" href="https://datina-seattle.web.app/" target="_blank">DATINA</a>
@@ -252,22 +259,31 @@
         </p>
       </div>
       <img class="parallax-content" src="assets/datina.png" />
-    </section>
+    </section> -->
 
     <!-- 📦 CRATES & CRATERS SECTION -->
-    <!-- <section class="parallax-section">
+    <section class="parallax-section">
       <img src="assets/svg/branch-2.svg" class="branch-decoration" />
       <div class="parallax-anchor dynamic-item">
-        <a class="clickable title" href="https://github.com/StefanTodoran/crates-craters" target="_blank">Crates &
+        <a class="clickable title line-height-fix" target="_blank"
+          href="https://play.google.com/store/apps/details?id=com.stefantodoran.cratesncraters">Crates &
           Craters</a>
-        <p>
-          Built with JavaScript and React Native, Crates and Craters is a passion project of mine. It is single player
-          puzzle game built for iOS and Android with a simple premise and minimalist theme. Collect the coins, push the
-          crates, and make your way to the flag. Click the title of this section to try it yourself!
+        <p class="long-version">
+          A passion project of mine, Crates and Craters is a single player puzzle game built for iOS and Android. Don't
+          let the simple premise and minimalist graphics decieve you, the game's mechanics compound on each other to
+          create challenging and layered gameplay!
+          <a class="clickable title small" href="mailto:stodoran@uw.edu" target="_blank">Click here</a> to give it a try
+          it yourself!
+        </p>
+        <p class="short-version">
+          A passion project of mine, Crates and Craters is a single player puzzle game a simple premise and minimalist
+          graphics, but challenging and layered gameplay!
+          <a class="clickable title small" href="mailto:stodoran@uw.edu" target="_blank">Click here</a> to give it a try
+          it yourself!
         </p>
       </div>
-      <img class="parallax-content" src="assets/crates_craters_2.png" />
-    </section> -->
+      <img class="parallax-content" src="assets/crates_n_craters.png" />
+    </section>
 
     <div class="section-break" id="contact-section">
       <img src="assets/svg/small-branch-4.svg" class="plant-decoration top right long" style="z-index: -1;" />
@@ -294,7 +310,7 @@
     <section id="footer" class="container">
       <div class="hr"></div>
       <div class="footer-row">
-        Last updated 11/7/2022
+        Last updated 5/9/2023
         <img style="height: 1.5em; margin-left: 0.5em;" src="assets/leaf-logo.png" />
       </div>
       <div class="footer-row">

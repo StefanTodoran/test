@@ -329,6 +329,7 @@ img {
   content: "> ";
   position: absolute;
   transform: translateY(-0.1em);
+  line-height: initial;
 }
 
 .title.clickable:hover::before {
@@ -341,15 +342,25 @@ img {
 }
 
 .title.clickable.small {
-  transition: opacity 0.5s ease;
+  border-bottom: 1px solid transparent;
+  transition: border 0.5s ease, border-radius 0.5s ease;
 }
 
 .title.clickable.small:hover {
-  opacity: 0.5;
+  border-radius: 0.2em;
+  border-bottom: 1px solid #4F772D;
 }
 
-.title.clickable.small:hover::before {
+.title.clickable.small:hover::before, .title.clickable.small:hover::after {
   display: none;
+}
+
+.title.line-height-fix {
+  line-height: 0.75em;
+}
+
+.title.line-height-fix + p {
+  margin-top: 5px;
 }
 
 .title.long-version {
@@ -390,6 +401,7 @@ img {
   margin: 5px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0);
+  transition: border 0.2s ease;
 }
 
 .icon-button:hover {
@@ -397,11 +409,14 @@ img {
   content: var(--hover-src);
 }
 
-#intro-section {
+#intro-section > div {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 100%;
+}
+
+#intro-section {
   margin-top: 40vh;
   margin-bottom: 25vh;
 }
@@ -587,6 +602,7 @@ img {
   transition: filter 0.5s ease, border 0.5s ease;
   animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
   animation-delay: calc(var(--order) * -3600ms);
+  outline: none !important;
 }
 
 .client-icon:hover {
@@ -623,16 +639,20 @@ img {
   height: min(10vw, 200px);
 }
 
-#client-tip {
+.client-tip {
   opacity: 0;
+  color: #e3e4e0;
+  text-align: center;
+  margin: 0 10%;
 }
 
-#client-tip.shown {
-  animation: delayed-fade-in 5s forwards;
+.client-tip.shown {
+  animation: fade-in 2s forwards;
+  animation-delay: calc(var(--delay, 4) * 1s);
 }
 
-@keyframes delayed-fade-in {
-  0%, 60% {
+@keyframes fade-in {
+  0% {
     opacity: 0;
   }
   100% {
@@ -725,7 +745,7 @@ img {
 }
 @media screen and (max-width: 768px) {
   .parallax-anchor {
-    max-width: 45vw;
+    max-width: 50vw;
     margin-left: -5vw;
   }
   .parallax-anchor.inverse {
@@ -737,6 +757,9 @@ img {
   }
   .title {
     font-size: 30px;
+  }
+  .title.tiny-width-fix {
+    font-size: 26px;
   }
   p, .title.small {
     font-size: 14px;
@@ -754,6 +777,9 @@ img {
   .branch-decoration {
     max-width: 60vw;
   }
+  .client-tip {
+    font-size: 16px;
+  }
 }
 @media screen and (max-width: 425px) {
   .title {
@@ -767,6 +793,15 @@ img {
   }
   #back-to-top-btn {
     max-width: 20vmin;
+  }
+  .client-tip {
+    font-size: 14px;
+  }
+  .container {
+    padding: 30vh 5vw 10vh 5vw;
+  }
+  .icon-button {
+    content: var(--hover-src);
   }
 }
 @media screen and (max-width: 362px) {

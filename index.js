@@ -55,7 +55,8 @@
     const dynamic_elements = document.querySelectorAll('.dynamic-item');
     dynamic_elements.forEach((element) => observer.observe(element));
 
-    observer.observe(document.getElementById('client-tip'));
+    const client_tips = document.querySelectorAll('.client-tip');
+    client_tips.forEach((element) => observer.observe(element));
   }
 
   function setUpMenu() {
