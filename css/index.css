@@ -692,21 +692,6 @@ img {
 /* ================= */
 /* ==================== */
 /* 📜 CUSTOM SCROLLBAR */
-@media screen and (min-width: 768px) {
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    background: rgba(112, 144, 65, 0.1882352941);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #31572C;
-    border-radius: 6px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #224120;
-  }
-}
 /* END CUSTOM SCROLLBAR */
 /* ==================== */
 .hidden {
