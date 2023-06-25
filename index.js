@@ -10,8 +10,8 @@
     setDynamicElementsObserver();
     setUpMenu();
   
-    preloadImage('./assets/svg/resume_hover.svg');
-    preloadImage('./assets/svg/contact_hover.svg');
+    // preloadImage('./assets/svg/resume_hover.svg');
+    // preloadImage('./assets/svg/contact_hover.svg');
     preloadImage('./assets/svg/back-to-top_hover.svg');
 
     const loader = document.getElementById('loader-container');
@@ -95,9 +95,9 @@
     back_btn.addEventListener('click', scroll_top);
 
     const freelance_btn = document.getElementById('freelance-btn');
-    const scroll_arrow = document.getElementById('scroll-arrow');
+    // const scroll_arrow = document.getElementById('scroll-arrow');
     freelance_btn.addEventListener('click', () => { scrollTo(wrapper, freelance) });
-    addActivationEvent(scroll_arrow, () => { scrollTo(wrapper, freelance) });
+    // addActivationEvent(scroll_arrow, () => { scrollTo(wrapper, freelance) });
 
     const projects_btn = document.getElementById('projects-btn');
     projects_btn.addEventListener('click', () => { scrollTo(wrapper, projects) });

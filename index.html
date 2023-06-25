@@ -14,7 +14,8 @@
 
   <meta charset="utf-8" />
   <title>Stefan's Portfolio</title>
-  <meta name="description" content="Interactive visual resume by Stefan Todoran. Frontend software engineer and designer.">
+  <meta name="description"
+    content="Interactive visual resume by Stefan Todoran. Frontend software engineer and designer.">
 
   <link href="css/index.css" rel="stylesheet" type="text/css" />
   <link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -94,7 +95,7 @@
     <img src="assets/svg/leaf.svg" class="falling-decoration hidden" id="leaf-template" />
     <!-- END FALLING LEAVES -->
 
-    <section id="intro-section">
+    <!-- <section id="intro-section">
       <div>
         <a href="assets/Resume.pdf" target="_blank" id="buggy-icon-button" style="margin: 5px;">
           <img class="icon-button clickable" src="assets/svg/resume.svg" title="My Resume"
@@ -105,6 +106,25 @@
           style="--hover-src: url('../assets/svg/contact_hover.svg')" title="Contact Me"/>
       </div>
       <p class="client-tip" style="--delay: 10">Scroll down to learn about my programming journey!</p>
+    </section> -->
+
+    <section id="intro-section" class="parallax-section">
+      <div id="intro-buttons">
+        <a href="assets/Resume.pdf" target="_blank" id="buggy-icon-button" style="margin: 5px;">
+          <img class="icon-button clickable" src="assets/svg/resume_hover.svg" title="My Resume" style="margin: 0;" />
+        </a>
+        <img tabindex="0" id="contact-icon" class="icon-button clickable" src="assets/svg/contact_hover.svg"
+          title="Contact Me" />
+      </div>
+
+      <img src="assets/svg/branch-3.svg" class="branch-decoration inverse" />
+      <div class="parallax-anchor dynamic-item inverse">
+        <a tabindex="0" class="title tabbable line-height-fix">Hey There!</a>
+        <p>
+          I'm Stefan, a computer science graduate from the University of Washington with a passion for web and mobile
+          design. I also dabble in machine learning and game development. Scroll down to learn about some of my work!
+        </p>
+      </div>
     </section>
 
     <div class="section-break" id="freelance-section">
@@ -272,13 +292,17 @@
           A passion project of mine, Crates and Craters is a single player puzzle game built for iOS and Android. Don't
           let the simple premise and minimalist graphics decieve you, the game's mechanics compound on each other to
           create challenging and layered gameplay!
-          <a class="clickable title small" href="https://play.google.com/store/apps/details?id=com.stefantodoran.cratesncraters" target="_blank">Click here</a> to give it a try
+          <a class="clickable title small"
+            href="https://play.google.com/store/apps/details?id=com.stefantodoran.cratesncraters" target="_blank">Click
+            here</a> to give it a try
           it yourself!
         </p>
         <p class="short-version">
           A passion project of mine, Crates and Craters is a single player puzzle game a simple premise and minimalist
           graphics, but challenging and layered gameplay!
-          <a class="clickable title small" href="https://play.google.com/store/apps/details?id=com.stefantodoran.cratesncraters" target="_blank">Click here</a> to give it a try
+          <a class="clickable title small"
+            href="https://play.google.com/store/apps/details?id=com.stefantodoran.cratesncraters" target="_blank">Click
+            here</a> to give it a try
           it yourself!
         </p>
       </div>
@@ -310,7 +334,7 @@
     <section id="footer" class="container">
       <div class="hr"></div>
       <div class="footer-row">
-        Last updated 5/9/2023
+        Last updated 6/24/2023
         <img style="height: 1.5em; margin-left: 0.5em;" src="assets/leaf-logo.png" />
       </div>
       <div class="footer-row">

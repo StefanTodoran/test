@@ -16,9 +16,11 @@ Make sure to manually minify the css file.
 ## TODO
 For some reason, the minifier used in `build.js` is unable to pass options to its css minifying dependency, and the documentation is unclear. It seems to be encoding background-image properties from css to base64, which is an odd default behavior for a supposed "minifier"...
 
-The site still loads in pretty slow, even with the minification, so looking in to cutting some of the image sizes and perhaps some compresion could help.
+The site still loads in pretty slow, even with the minification, so looking in to cutting some of the image sizes and perhaps some other compresion could help.
 
 Finally, the plant decorations look cool but I want the jungle to feel alive! Consider potential methods for giving the plants some subtle swaying in the wind animations. At the same time, the plant decorations are a bit visually busy, so some way to make them less distracting could help.
+
+Also the site just needs a good cleanup, remove old and unused sections, refactor code and especially css styles to be more efficient, improve minifier script, etc.
 
 ## Known Issues
 Tabbing through the site doesn't seem to work for parallax sections, it just doesn't scroll far enough... not sure there is even a way to fix this, since itt only occurs on firefox.

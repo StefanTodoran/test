@@ -240,6 +240,7 @@
 /* =============== */
 html {
   scroll-behavior: smooth;
+  overscroll-behavior: none;
 }
 
 body, input, textarea {
@@ -271,7 +272,7 @@ a:focus, .clickable:focus, .tabbable:focus {
   border-radius: 5px;
 }
 
-a, .clickable {
+.clickable {
   cursor: pointer;
 }
 
@@ -410,25 +411,27 @@ img {
   padding: 15px;
   margin: 5px;
   border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0);
-  transition: border 0.2s ease;
+  border: 1px solid rgba(79, 119, 45, 0.5);
+  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease;
 }
 
 .icon-button:hover {
   border: 1px solid #4F772D;
+  border-radius: 10px;
   content: var(--hover-src);
-}
-
-#intro-section > div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
+  transform: scale(0.975);
 }
 
 #intro-section {
   margin-top: 40vh;
-  margin-bottom: 25vh;
+  margin-bottom: 30vh;
+}
+
+#intro-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 5vw;
 }
 
 /* =================== */
@@ -773,6 +776,9 @@ img {
   .client-tip {
     font-size: 16px;
   }
+  #intro-buttons {
+    flex-direction: column;
+  }
 }
 @media screen and (max-width: 425px) {
   .title {
@@ -797,9 +803,6 @@ img {
   }
   .container {
     padding: 30vh 5vw 10vh 5vw;
-  }
-  .icon-button {
-    content: var(--hover-src);
   }
 }
 @media screen and (max-width: 362px) {
