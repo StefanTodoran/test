@@ -22,7 +22,7 @@ $light-color: #90A955
 $highlight-color: #BECE7A
 
 ::selection
-  background-color: #90A95599
+  background-color: rgba($main-color, .35)
   color: white
 
 p, .title.small
@@ -32,9 +32,19 @@ p, .title.small
 hr
   border-color: $highlight-color
 
-a:focus, .clickable:focus, .tabbable:focus
+a:focus, .clickable:focus
   outline: 1px solid $main-color
   border-radius: 5px
+
+p:focus
+  outline: none !important
+
+.client-icon:focus, .icon-button:focus
+  scroll-margin: 40vmin 0
+
+.title.clickable:focus
+  scroll-margin-top: 30vmin
+  scroll-margin-bottom: 60vmin
 
 // a, .clickable
 .clickable
@@ -57,7 +67,8 @@ img
   @include vendor-prefix('text-fill-color', 'transparent')
 
 // Clickable Title Styles
-.title.clickable:not(.small), .title.clickable:hover::before, .title.clickable:hover::after
+.title.clickable:not(.small), 
+.title.clickable::before, .title.clickable::after
   background: linear-gradient(1deg, $main-color 40%, $highlight-color 60%, $main-color 80%)
   background-size: 100% 200%
 
@@ -65,20 +76,34 @@ img
   @include vendor-prefix('background-clip', 'text')
   @include vendor-prefix('text-fill-color', 'transparent')
 
-.title.clickable:hover
+// .title.clickable:hover, .title.clickable:focus
+.title.clickable
   position: relative
+  outline: none !important
 
-.title.clickable:hover::before, .title.clickable:hover::after
+.title.clickable::before, .title.clickable::after
   content: "> "
   position: absolute
   transform: translateY(-0.1em)
   line-height: initial
+  top: 0
 
-.title.clickable:hover::before
+  left: 0
+  right: 0
+  opacity: 0
+  transition: opacity 0.25s ease, left 0.25s ease, right 0.25s ease
+
+.title.clickable:hover::before,
+.title.clickable:focus::before
   left: -1em
+  opacity: 1
 
-.title.clickable:hover::after
+.title.clickable:hover::after,
+.title.clickable:focus::after
   right: -1em
+  opacity: 1
+
+.title.clickable::after
   transform: translateY(-0.1em) scaleX(-1)
 // End Clickable Title
 
@@ -88,10 +113,11 @@ img
   border-radius: 0.2em
   transition: border 0.5s ease
 
-.title.clickable.small:hover
+.title.clickable.small:hover,
+.title.clickable.small:focus
   border-bottom: 1px solid $light-color
 
-.title.clickable.small:hover::before, .title.clickable.small:hover::after
+.title.clickable.small::before, .title.clickable.small::after
   display: none
 // End Small Clickable Title
 
@@ -137,6 +163,12 @@ $btn-size: min(100px, 20vw)
   width: calc($btn-size + 30px)
   height: calc($btn-size + 30px)
 
+#buggy-icon-button:focus
+  outline: none
+
+#buggy-icon-button:focus > .icon-button
+  outline: 1px solid $main-color
+
 .icon-button
   width: $btn-size
   height: $btn-size
@@ -149,7 +181,7 @@ $btn-size: min(100px, 20vw)
 
 .icon-button:hover
   border: 1px solid $main-color
-  border-radius: 10px
+  border-radius: 8px
   content: var(--hover-src)
   transform: scale(0.975)
 
@@ -325,10 +357,15 @@ $icon-size: min(10vw, 200px)
   left: 0
   margin: 0 10px
   filter: grayscale(1)
-  transition: filter 0.5s ease, border 0.5s ease
+  border: 1px solid transparent
+  transition: filter 0.5s ease, border 0.5s ease, background 0.5s ease, border-radius 0.5s ease
   animation: scroll 25s linear infinite, edge-fade 25s linear infinite
   animation-delay: calc(var(--order) * -3600ms)
-  outline: none !important // to avoid the ugly :focus outline on click
+
+.client-icon:focus
+  background-color: #00000006
+  border-color: #00000011
+  outline: none !important
 
 .client-icon:hover
   filter: none
