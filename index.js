@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 (function () {
 
-  window.addEventListener('load', init);
+  window.addEventListener("load", init);
 
   /**
    * Initialization function that should handle anything that needs to occur on page load.
@@ -9,15 +9,16 @@
   function init() {
     setDynamicElementsObserver();
     setUpMenu();
-  
-    // preloadImage('./assets/svg/resume_hover.svg');
-    // preloadImage('./assets/svg/contact_hover.svg');
-    preloadImage('./assets/svg/back-to-top_hover.svg');
 
-    const loader = document.getElementById('loader-container');
-    loader.classList.add('loaded');
+    // preloadImage("./assets/svg/resume_hover.svg");
+    // preloadImage("./assets/svg/contact_hover.svg");
+    preloadImage("./assets/svg/back-to-top_hover.svg");
+
+    const loader = document.getElementById("loader-container");
+    loader.classList.add("loaded");
 
     spawnLeaf();
+    displayLastUpdatedTime();
   }
 
   /**
@@ -32,7 +33,7 @@
   function setDynamicElementsObserver() {
     let options = {
       root: null,
-      rootMargin: '0px',
+      rootMargin: "0px",
       threshold: 0.5
     };
 
@@ -40,23 +41,23 @@
     // class. This class sets their opacity and some other styles to the
     // pre-animation state. Shown is the post-animation state. The animation
     // only happens once, since entries the screen is not intersecting don't
-    // get their 'shown' class removed.
+    // get their "shown" class removed.
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('shown');
+          entry.target.classList.add("shown");
         }
         // else {
-        //   entry.target.classList.remove('shown');
+        //   entry.target.classList.remove("shown");
         // }
       })
     }, options);
-    
-    const dynamic_elements = document.querySelectorAll('.dynamic-item');
+
+    const dynamic_elements = document.querySelectorAll(".dynamic-item");
     dynamic_elements.forEach((element) => observer.observe(element));
 
-    const client_tips = document.querySelectorAll('.client-tip');
+    const client_tips = document.querySelectorAll(".client-tip");
     client_tips.forEach((element) => observer.observe(element));
   }
 
@@ -64,47 +65,47 @@
     // This checks if we have scrolled past a certain element, then 
     //adds the appropriate class to the indicator, which sets its cx position.
 
-    const freelance = document.getElementById('freelance-section');
-    const projects = document.getElementById('projects-section');
-    const contact = document.getElementById('contact-section');
+    const freelance = document.getElementById("freelance-section");
+    const projects = document.getElementById("projects-section");
+    const contact = document.getElementById("contact-section");
 
-    const wrapper = document.getElementById('wrapper');
-    const indicator = document.getElementById('indicator');
-    wrapper.addEventListener('scroll', function() {
-      let section = 'home';
-      
+    const wrapper = document.getElementById("wrapper");
+    const indicator = document.getElementById("indicator");
+    wrapper.addEventListener("scroll", function () {
+      let section = "home";
+
       if (scrolledPast(wrapper, contact)) {
-        section = 'contact';
+        section = "contact";
       } else if (scrolledPast(wrapper, projects)) {
-        section = 'projects';
+        section = "projects";
       } else if (scrolledPast(wrapper, freelance)) {
-        section = 'freelance';
+        section = "freelance";
       }
 
-      indicator.classList.remove('home', 'freelance', 'projects', 'contact');
+      indicator.classList.remove("home", "freelance", "projects", "contact");
       indicator.classList.add(section);
     });
 
     // Here we set the menu button listeners. These scroll to a certain
     // position if invisible circles on the menu are clicked.
 
-    const home_btn = document.getElementById('home-btn');
-    const back_btn = document.getElementById('back-to-top-btn');
-    const scroll_top = function() { wrapper.scrollTo({top: 0, behavior: 'smooth'}); }
-    home_btn.addEventListener('click', scroll_top);
-    back_btn.addEventListener('click', scroll_top);
+    const home_btn = document.getElementById("home-btn");
+    const back_btn = document.getElementById("back-to-top-btn");
+    const scroll_top = function () { wrapper.scrollTo({ top: 0, behavior: "smooth" }); }
+    home_btn.addEventListener("click", scroll_top);
+    back_btn.addEventListener("click", scroll_top);
 
-    const freelance_btn = document.getElementById('freelance-btn');
-    // const scroll_arrow = document.getElementById('scroll-arrow');
-    freelance_btn.addEventListener('click', () => { scrollTo(wrapper, freelance) });
+    const freelance_btn = document.getElementById("freelance-btn");
+    // const scroll_arrow = document.getElementById("scroll-arrow");
+    freelance_btn.addEventListener("click", () => { scrollTo(wrapper, freelance) });
     // addActivationEvent(scroll_arrow, () => { scrollTo(wrapper, freelance) });
 
-    const projects_btn = document.getElementById('projects-btn');
-    projects_btn.addEventListener('click', () => { scrollTo(wrapper, projects) });
+    const projects_btn = document.getElementById("projects-btn");
+    projects_btn.addEventListener("click", () => { scrollTo(wrapper, projects) });
 
-    const contact_btn = document.getElementById('contact-btn');
-    const contact_icon = document.getElementById('contact-icon');
-    contact_btn.addEventListener('click', () => { scrollTo(wrapper, contact) });
+    const contact_btn = document.getElementById("contact-btn");
+    const contact_icon = document.getElementById("contact-icon");
+    contact_btn.addEventListener("click", () => { scrollTo(wrapper, contact) });
     addActivationEvent(contact_icon, () => { scrollTo(wrapper, contact) });
   }
 
@@ -115,9 +116,9 @@
    * @param {Function} event The funciton to occur on click/enter
    */
   function addActivationEvent(object, event) {
-    object.addEventListener('click', event);
-    object.addEventListener('keydown', (evt) => { 
-      if (evt.code === 'Enter') { event(); }
+    object.addEventListener("click", event);
+    object.addEventListener("keydown", (evt) => {
+      if (evt.code === "Enter") { event(); }
     });
   }
 
@@ -137,7 +138,7 @@
    * @param {Node} object The child of scroll_body to scroll to
    */
   function scrollTo(scroll_body, object) {
-    scroll_body.scrollTo({top: (object.offsetTop - object.offsetHeight), behavior: 'smooth'});
+    scroll_body.scrollTo({ top: (object.offsetTop - object.offsetHeight), behavior: "smooth" });
   }
 
   /**
@@ -152,13 +153,13 @@
   function spawnLeaf() {
     // If we don't do this, then after switchign to another tab
     // and back after a few seconds several leaves build up and fall at once.
-    if (document.visibilityState == "visible" && !scrolledPast(document.getElementById('wrapper'), document.getElementById('freelance-section'))) {
-      const template = document.getElementById('leaf-template');
+    if (document.visibilityState == "visible" && !scrolledPast(document.getElementById("wrapper"), document.getElementById("freelance-section"))) {
+      const template = document.getElementById("leaf-template");
       const leaf = template.cloneNode(false);
 
-      leaf.classList.remove('hidden');
-      leaf.style.setProperty('--duration', `${random(3, 7)}s`);
-      leaf.style.setProperty('--position', `${random(5, 95)}vw`);
+      leaf.classList.remove("hidden");
+      leaf.style.setProperty("--duration", `${random(3, 7)}s`);
+      leaf.style.setProperty("--position", `${random(5, 95)}vw`);
       template.parentNode.insertBefore(leaf, template);
       setTimeout(() => {
         leaf.remove();
@@ -166,5 +167,25 @@
     }
     setTimeout(spawnLeaf, random(3, 8) * 1000);
   }
-  
+
+  async function displayLastUpdatedTime() {
+    const target = document.getElementById("last-updated");
+    const value = await fetchLatestCommitTime("StefanTodoran", "StefanTodoran.github.io");
+
+    target.innerText = value.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" });
+  }
+
+  async function fetchLatestCommitTime(user, repo) {
+    const url = `https://api.github.com/repos/${user}/${repo}/commits`;
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Accept": "application/json",
+      },
+    });
+
+    const json = await res.json();
+    return new Date(json[0].commit.committer.date);
+  }
+
 })();
