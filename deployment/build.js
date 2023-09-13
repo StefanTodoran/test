@@ -3,26 +3,75 @@ import tryToCatch from 'try-to-catch';
 import fse from 'fs-extra';
 import path from 'path';
 
-function getFilesWithExtension(root, directory, extension, ignoreUnderscored) {
-  const target = root + directory;
+/**
+ * REQUIRED:
+ * @param {fse.PathLike} root 
+ * @param {string} extension
+ * 
+ * OPTIONAL: 
+ * @param {{ recursive: boolean, directory: string, ignoreDirectories: string[], ignoreUnderscored: boolean }} useOptions
+ * Options given of the form described below. By default
+ * is not recursive, searches the root directory, ignores
+ * only the "docs" sub-directory, and does not ignore files whose
+ * names begin with underscores.
+ */
+function getFilesWithExtension(root, extension, useOptions) {
+  const defaultOptions = {
+    recursive: false,
+    directory: "",
+    ignoreDirectories: ["docs"],
+    ignoreUnderscored: false,
+  }
+  const options = Object.assign(defaultOptions, useOptions);
+
+  const target = root + options.directory;
   if (!fse.existsSync(target)) { // Check if the directory exists
     console.log(`(error) \x1b[91mdirectory "${target}" does not exist!\x1b[0m`);
     throw new Error("FAILED");
   }
 
   // Read the contents of the directory
-  const files = fse.readdirSync(target);
+  const files = searchDirectory(target, options.recursive, options.ignoreDirectories);
 
   // Filter files by the extension
   const filtered = files.filter((file) => {
     const ext = path.extname(file).toLowerCase();
-    if (ignoreUnderscored && file.startsWith('_')) return false;
+    if (options.ignoreUnderscored && file.startsWith('_')) return false;
     return ext === extension.toLowerCase();
   });
 
-
-  const result = filtered.map(file => directory + file);
+  const result = filtered.map(file => options.directory + file);
   return result;
+}
+
+/**
+ * @param {fse.PathLike} directory Directory to seach for files.
+ * @param {boolean} recursive Whether to search sub-directories.
+ * @param {string[]} ignore List of sub-directories to ignore.
+ */
+function searchDirectory(directory, recursive, ignore) {
+  const files = fse.readdirSync(directory);
+  const results = [];
+
+  for (const file of files) {
+    const filePath = path.join(directory, file);
+    const fileStat = fse.statSync(filePath);
+
+    if (recursive && fileStat.isDirectory() && !ignore.includes(file)) {
+      const sub = searchDirectory(filePath);
+      results.push(...sub);
+    } else if (fileStat.isFile()) {
+      results.push(filePath);
+    }
+  }
+
+  return results;
+}
+
+function getDirectoryName(filePath) {
+  const index = Math.max(filePath.lastIndexOf("/"), filePath.lastIndexOf("\\"));
+  if (index === -1) return filePath;
+  return filePath.substring(0, index);
 }
 
 async function calculateFileSize(fileList) {
@@ -66,8 +115,8 @@ async function main() {
   let dest = "./docs/";
 
   if (process.cwd().includes("build")) {
-    src = "../";
-    dest = "../docs/";
+    src = "." + src;
+    dest = "." + dest;
   }
 
   console.log(`(setup) clearing ${dest} folder and contents`);
@@ -78,31 +127,33 @@ async function main() {
   console.log(`(setup) creating CNAME file in ${dest}`);
   fse.writeFile(dest + "CNAME", "todoran.dev");
 
-  const dirs = ["css"];
-  for (let i = 0; i < dirs.length; i++) {
-    console.log(`(setup) creating empty ${dest + dirs[i]} folder`);
-    if (!fse.existsSync(dest + dirs[i])) {
-      fse.mkdirSync(dest + dirs[i]);
-    }
-  }
-
-  const cssFiles = getFilesWithExtension(src, "css/", ".css");
-  const htmlFiles = getFilesWithExtension(src, "", ".html");
-  const jsFiles = getFilesWithExtension(src, "", ".js");
+  const cssFiles = getFilesWithExtension(src, ".css", { recursive: true, ignoreDirectories: ["docs"] });
+  const htmlFiles = getFilesWithExtension(src, ".html", { recursive: true, ignoreDirectories: ["docs"] });
+  const jsFiles = getFilesWithExtension(src, ".js", { recursive: true, ignoreDirectories: ["docs", "deployment"] });
 
   const files = [...htmlFiles, ...cssFiles, ...jsFiles];
   for (let i = 0; i < files.length; i++) {
-    const src_file = src + files[i];
-    const dest_file = dest + files[i];
+    const srcFile = src + files[i];
+    const destFile = dest + files[i];
 
-    const mini = await grabAndMinify(src_file);
-    console.log(`\n(minify) read and minified ${src_file}`);
-    fse.writeFileSync(dest_file, mini);
-    console.log(`(copy) copied ${src_file} --> ${dest_file}`);
+    const mini = await grabAndMinify(srcFile);
+    console.log(`\n(minify) read and minified ${srcFile}`);
+
+    fse.ensureDirSync(getDirectoryName(destFile));
+    fse.writeFileSync(destFile, mini);
+    console.log(`(copy) copied ${srcFile} --> ${destFile}`);
   }
+
+  // Everything below this point is exclusively logging related.
 
   console.log(`\n(recursive copy) ${src + "assets"} --> ${dest + "assets"}`);
   fse.copySync(src + "assets", dest + "assets", { overwrite: true });
+
+  let assetFiles = fse.readdirSync(dest + "assets");
+  assetFiles = assetFiles.map(file => dest + "assets/" + file);
+
+  const assetTotal = await calculateFileSize(assetFiles) / 1000;
+  console.log(`(result) total size of all assets: \x1b[93m${assetTotal}\x1b[0m kb`)
 
   const srcFiles = files.map(file => src + file);
   const destFiles = files.map(file => dest + file);
@@ -110,7 +161,7 @@ async function main() {
   const srcTotal = await calculateFileSize(srcFiles) / 1000;
   const destTotal = await calculateFileSize(destFiles) / 1000;
 
-  console.log(`\n(result) raw size: \x1b[93m${srcTotal}\x1b[0m kb`);
+  console.log(`\n(result) raw size of html, css, and js: \x1b[93m${srcTotal}\x1b[0m kb`);
   console.log(`(result) minified size: \x1b[93m${destTotal}\x1b[0m kb`);
   console.log(`(result) compressed by \x1b[92m${Math.round((1 - (destTotal / srcTotal)) * 100)}%\x1b[0m\n`);
 }
@@ -118,6 +169,6 @@ async function main() {
 console.log(
   "===================================\n" +
   "STARTING PORTFOLIO SITE MINIFER ...\n" +
-  "==================================="
+  "===================================\n"
 );
 main();
