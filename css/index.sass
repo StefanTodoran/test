@@ -337,8 +337,8 @@ $btn-size: min(100px, 20vw)
   width: 100%
 
 .footer-row
-  color: #B4B6AE
-  font-weight: lighter
+  color: #c6c8c2
+  font-weight: 300
 /* END FOOTER STYLES */
 /* ================= */
 
@@ -393,8 +393,9 @@ $icon-size: min(10vw, 200px)
   height: $icon-size
 
 .client-tip
+  font-weight: 300
   opacity: 0
-  color: #e3e4e0
+  color: #c6c8c2
   text-align: center
   margin: 0 10%
 
@@ -424,7 +425,8 @@ $icon-size: min(10vw, 200px)
   flex-direction: column
   justify-content: center
   align-items: center
-  transition: opacity 1s ease, visibility 1s ease
+  backdrop-filter: blur(3px)
+  transition: opacity 1s ease, visibility 1s ease, backdrop-filter 1s ease
 
 #loader
   width: 60vw

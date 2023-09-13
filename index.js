@@ -7,6 +7,7 @@
    * Initialization function that should handle anything that needs to occur on page load.
    */
   function init() {
+    setLazyLoadingObserver();
     setDynamicElementsObserver();
     setUpMenu();
 
@@ -14,11 +15,11 @@
     // preloadImage("./assets/svg/contact_hover.svg");
     preloadImage("./assets/svg/back-to-top_hover.svg");
 
-    const loader = document.getElementById("loader-container");
-    loader.classList.add("loaded");
-
     spawnLeaf();
     displayLastUpdatedTime();
+
+    const loader = document.getElementById("loader-container");
+    loader.classList.add("loaded");
   }
 
   /**
@@ -47,6 +48,7 @@
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("shown");
+          observer.unobserve(entry.target);
         }
         // else {
         //   entry.target.classList.remove("shown");
@@ -54,11 +56,27 @@
       })
     }, options);
 
-    const dynamic_elements = document.querySelectorAll(".dynamic-item");
-    dynamic_elements.forEach((element) => observer.observe(element));
+    const dynamicElements = document.querySelectorAll(".dynamic-item");
+    dynamicElements.forEach((element) => observer.observe(element));
 
-    const client_tips = document.querySelectorAll(".client-tip");
-    client_tips.forEach((element) => observer.observe(element));
+    const clientTips = document.querySelectorAll(".client-tip");
+    clientTips.forEach((element) => observer.observe(element));
+  }
+
+  function setLazyLoadingObserver() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const lazyLoad = entry.target;
+          lazyLoad.src = lazyLoad.dataset.src;
+          lazyLoad.classList.remove("lazy-load");
+          observer.unobserve(lazyLoad);
+        }
+      })
+    });
+
+    const lazyLoadElements = document.querySelectorAll(".lazy-load");
+    lazyLoadElements.forEach((element) => observer.observe(element));
   }
 
   function setUpMenu() {
@@ -89,24 +107,24 @@
     // Here we set the menu button listeners. These scroll to a certain
     // position if invisible circles on the menu are clicked.
 
-    const home_btn = document.getElementById("home-btn");
-    const back_btn = document.getElementById("back-to-top-btn");
-    const scroll_top = function () { wrapper.scrollTo({ top: 0, behavior: "smooth" }); }
-    home_btn.addEventListener("click", scroll_top);
-    back_btn.addEventListener("click", scroll_top);
+    const homeButton = document.getElementById("home-btn");
+    const backButton = document.getElementById("back-to-top-btn");
+    const scrollTop = function () { wrapper.scrollTo({ top: 0, behavior: "smooth" }); }
+    homeButton.addEventListener("click", scrollTop);
+    backButton.addEventListener("click", scrollTop);
 
-    const freelance_btn = document.getElementById("freelance-btn");
-    // const scroll_arrow = document.getElementById("scroll-arrow");
-    freelance_btn.addEventListener("click", () => { scrollTo(wrapper, freelance) });
-    // addActivationEvent(scroll_arrow, () => { scrollTo(wrapper, freelance) });
+    const freelanceButton = document.getElementById("freelance-btn");
+    // const scrollArrow = document.getElementById("scroll-arrow");
+    freelanceButton.addEventListener("click", () => { scrollTo(wrapper, freelance) });
+    // addActivationEvent(scrollArrow, () => { scrollTo(wrapper, freelance) });
 
-    const projects_btn = document.getElementById("projects-btn");
-    projects_btn.addEventListener("click", () => { scrollTo(wrapper, projects) });
+    const projectsButton = document.getElementById("projects-btn");
+    projectsButton.addEventListener("click", () => { scrollTo(wrapper, projects) });
 
-    const contact_btn = document.getElementById("contact-btn");
-    const contact_icon = document.getElementById("contact-icon");
-    contact_btn.addEventListener("click", () => { scrollTo(wrapper, contact) });
-    addActivationEvent(contact_icon, () => { scrollTo(wrapper, contact) });
+    const contactButton = document.getElementById("contact-btn");
+    const contactIcon = document.getElementById("contact-icon");
+    contactButton.addEventListener("click", () => { scrollTo(wrapper, contact) });
+    addActivationEvent(contactIcon, () => { scrollTo(wrapper, contact) });
   }
 
   /**
@@ -125,20 +143,20 @@
   /**
    * Returns a boolean based on whether the provided object has been
    * scrolled past, meaning it is more than halfway up the viewport.
-   * @param {Node} scroll_body The DOM element being scrolled
-   * @param {Node} object The child of scroll_body to check
+   * @param {Node} scrollBody The DOM element being scrolled
+   * @param {Node} object The child of scrollBody to check
    * @returns {boolean} Whether or not the object has been scrolled past
    */
-  function scrolledPast(scroll_body, object) {
-    return (scroll_body.scrollTop > (object.offsetTop - 2 * object.offsetHeight));
+  function scrolledPast(scrollBody, object) {
+    return (scrollBody.scrollTop > (object.offsetTop - 2 * object.offsetHeight));
   }
 
   /**
-   * @param {Node} scroll_body The DOM element being scrolled
-   * @param {Node} object The child of scroll_body to scroll to
+   * @param {Node} scrollBody The DOM element being scrolled
+   * @param {Node} object The child of scrollBody to scroll to
    */
-  function scrollTo(scroll_body, object) {
-    scroll_body.scrollTo({ top: (object.offsetTop - object.offsetHeight), behavior: "smooth" });
+  function scrollTo(scrollBody, object) {
+    scrollBody.scrollTo({ top: (object.offsetTop - object.offsetHeight), behavior: "smooth" });
   }
 
   /**
@@ -169,23 +187,43 @@
   }
 
   async function displayLastUpdatedTime() {
-    const target = document.getElementById("last-updated");
-    const value = await fetchLatestCommitTime("StefanTodoran", "StefanTodoran.github.io");
-
-    target.innerText = value.toLocaleDateString("en-US", { month: "2-digit", day: "2-digit", year: "numeric" });
-  }
-
-  async function fetchLatestCommitTime(user, repo) {
-    const url = `https://api.github.com/repos/${user}/${repo}/commits`;
-    const res = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Accept": "application/json",
-      },
+    let commitDate = await getLastCommitDate("StefanTodoran", "StefanTodoran.github.io");
+    commitDate = commitDate.toLocaleString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric"
     });
 
-    const json = await res.json();
-    return new Date(json[0].commit.committer.date);
+    const lastUpdated = document.getElementById("last-updated");
+    lastUpdated.innerText = commitDate;
+  }
+
+  /**
+   * @param {string} owner String github username of the target repo owner.
+   * @param {string} repo String repo name of the target repo.
+   * @returns {Date} A date object representing the most recent commit in the repo,
+   * or null if there was an issue getting the most recent commit time.
+   */
+  async function getLastCommitDate(owner, repo) {
+    const url = `https://api.github.com/repos/${owner}/${repo}/commits`;
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+
+      if (!(data.length > 0)) {
+        throw new Error("No commits found in the repository.");
+      }
+
+      const lastCommit = data[0];
+      const commitDate = new Date(lastCommit.commit.author.date);
+      return commitDate;
+    }
+    catch (error) {
+      console.error("Error retrieving commit data:", error.message);
+    }
+
+    return null;
   }
 
 })();

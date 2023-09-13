@@ -628,8 +628,8 @@ img {
 }
 
 .footer-row {
-  color: #B4B6AE;
-  font-weight: lighter;
+  color: #c6c8c2;
+  font-weight: 300;
 }
 
 /* END FOOTER STYLES */
@@ -695,8 +695,9 @@ img {
 }
 
 .client-tip {
+  font-weight: 300;
   opacity: 0;
-  color: #e3e4e0;
+  color: #c6c8c2;
   text-align: center;
   margin: 0 10%;
 }
@@ -730,7 +731,8 @@ img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: opacity 1s ease, visibility 1s ease;
+  backdrop-filter: blur(3px);
+  transition: opacity 1s ease, visibility 1s ease, backdrop-filter 1s ease;
 }
 
 #loader {
