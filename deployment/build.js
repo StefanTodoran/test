@@ -45,7 +45,15 @@ async function calculateFileSize(fileList) {
 }
 
 async function grabAndMinify(file) {
-  const [error, data] = await tryToCatch(minify, file);
+  const options = {
+    img: {
+      maxSize: 0,
+      // Defaults to 4096, if we don't set it to zero then relative url() images
+      // in the css get converted to base64 and our css becomes massively bloated.
+    },
+  };
+
+  const [error, data] = await tryToCatch(minify, file, options);
   if (error) {
     console.log("(error) \x1b[91merror occured while minifying:\x1b[0m\n" + error.message);
     throw new Error("FAILED");
@@ -66,6 +74,9 @@ async function main() {
   fse.rmSync(dest, { recursive: true, force: true });
   console.log(`(setup) creating empty ${dest} folder`);
   fse.mkdirSync(dest);
+
+  console.log(`(setup) creating CNAME file in ${dest}`);
+  fse.writeFile(dest + "CNAME", "todoran.dev");
 
   const dirs = ["css"];
   for (let i = 0; i < dirs.length; i++) {
