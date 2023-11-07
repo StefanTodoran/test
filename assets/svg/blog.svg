@@ -1,26 +1,21 @@
-<svg width="47" height="40" viewBox="0 0 47 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_736_73)">
-<mask id="mask0_736_73" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="47" height="41">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M30.0929 31H16L9.5 37.5L7 40V36.4645V33.5V31H4.5H2.5H0V28.5V2.5V0H2.5H44.5H47V2.5V28.5V31H44.5H39.5647L37.1895 28.5H44.5V2.5H2.5V28.5H7H9.5V31V33.9645L14.2322 29.2322L14.9645 28.5H16H27.7176L30.0929 31Z" fill="black"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M19.456 14.8198L25.4053 16.0969L41.1638 32.6831L43.8047 35.4644L38.8274 40.1933L36.1857 37.4128L20.4272 20.8267L19.456 14.8198ZM21.6622 20.2147L21.0635 16.5118L24.7311 17.299L21.6622 20.2147ZM39.3022 32.6354L36.2333 35.5511L22.5901 21.1914L25.6589 18.2756L39.3022 32.6354ZM37.1403 36.5058L40.2092 33.5901L41.9586 35.4314L38.8897 38.3471L37.1403 36.5058Z" fill="black"/>
-<line x1="5" y1="15.25" x2="18" y2="15.25" stroke="black" stroke-width="1.5"/>
-<line x1="34" y1="11.25" x2="42" y2="11.25" stroke="black" stroke-width="1.5"/>
-<line x1="5" y1="11.25" x2="18" y2="11.25" stroke="black" stroke-width="1.5"/>
-<line x1="20" y1="11.25" x2="32" y2="11.25" stroke="black" stroke-width="1.5"/>
-<line x1="5" y1="7.25" x2="25" y2="7.25" stroke="black" stroke-width="1.5"/>
-<line x1="27" y1="7.25" x2="36" y2="7.25" stroke="black" stroke-width="1.5"/>
+<svg width="51" height="46" viewBox="0 0 51 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_736_73" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="4" width="47" height="41">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M32.0929 35H18L11.5 41.5L9 44V40.4645V37.5V35H6.5H4.5H2V32.5V6.5V4H4.5H46.5H49V6.5V32.5V35H46.5H41.5647L39.1895 32.5H46.5V6.5H4.5V32.5H9H11.5V35V37.9645L16.2322 33.2322L16.9645 32.5H18H29.7176L32.0929 35Z" fill="black"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M21.456 18.8198L27.4053 20.0969L43.1638 36.6831L45.8047 39.4644L40.8274 44.1933L38.1857 41.4128L22.4272 24.8267L21.456 18.8198ZM23.6622 24.2147L23.0635 20.5118L26.7311 21.299L23.6622 24.2147ZM41.3022 36.6354L38.2333 39.5511L24.5901 25.1914L27.6589 22.2756L41.3022 36.6354ZM39.1403 40.5058L42.2092 37.5901L43.9586 39.4314L40.8897 42.3471L39.1403 40.5058Z" fill="black"/>
+<line x1="7" y1="19.25" x2="20" y2="19.25" stroke="black" stroke-width="1.5"/>
+<line x1="36" y1="15.25" x2="44" y2="15.25" stroke="black" stroke-width="1.5"/>
+<line x1="7" y1="15.25" x2="20" y2="15.25" stroke="black" stroke-width="1.5"/>
+<line x1="22" y1="15.25" x2="34" y2="15.25" stroke="black" stroke-width="1.5"/>
+<line x1="7" y1="11.25" x2="27" y2="11.25" stroke="black" stroke-width="1.5"/>
+<line x1="29" y1="11.25" x2="38" y2="11.25" stroke="black" stroke-width="1.5"/>
 </mask>
 <g mask="url(#mask0_736_73)">
-<rect x="-3" y="-8" width="53" height="53" fill="url(#paint0_linear_736_73)"/>
-</g>
+<rect x="-1" y="-4" width="53" height="53" fill="url(#paint0_linear_736_73)"/>
 </g>
 <defs>
-<linearGradient id="paint0_linear_736_73" x1="23.5" y1="-8" x2="23.5" y2="45" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_736_73" x1="25.5" y1="-4" x2="25.5" y2="49" gradientUnits="userSpaceOnUse">
 <stop offset="0.25" stop-color="#4F772D"/>
 <stop offset="0.75" stop-color="#90A955"/>
 </linearGradient>
-<clipPath id="clip0_736_73">
-<rect width="47" height="40" fill="white"/>
-</clipPath>
 </defs>
 </svg>

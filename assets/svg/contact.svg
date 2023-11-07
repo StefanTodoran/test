@@ -1,39 +1,23 @@
-<svg width="57" height="49" viewBox="0 0 57 49" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g id="Mask group">
-    <mask id="mask0_0_1" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="57" height="49">
-      <g id="Icon">
-        <g id="Envelope Open">
-          <path id="Right Line" d="M55.6098 42.0244L31.9756 29.5122" stroke="black" stroke-width="1.7378" />
-          <path id="Left Line" d="M1.39024 42.0244L25.0244 29.5122" stroke="black" stroke-width="1.7378" />
-          <path id="Top Line Thin" d="M1.39024 19.7805L28.5 30.9024L55.6098 19.7805" stroke="black"
-            stroke-width="1.74" />
-          <g id="Top Line">
-            <path
-              d="M29.0582 5.90441L28.5011 5.67492L0.862568 17.0138L1.91792 19.5862L28.4989 8.68118L28.5222 8.69077L29.0582 5.90441Z"
-              fill="black" />
-            <path d="M44.8934 15.4345L54.9705 19.5855L56.0295 17.0145L46.0371 12.8984L44.8934 15.4345Z" fill="black" />
-          </g>
-          <path id="Mail Outline"
-            d="M0.834146 17L2.78049 18.3902V46.1951H54.2195V18.3902L56.1659 17L57 18.3902V48.9756H0V18.3902L0.834146 17Z"
-            fill="black" />
-        </g>
-        <path id="Text" d="M29.5 20.3028L37.7982 22.6049M29.7643 17.5466L39.265 20.1564M32 15.3426L40.6678 17.7703"
-          stroke="black" stroke-width="1.58974" />
-        <g id="Subtract" style="mix-blend-mode:multiply">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M29.0888 0.0723615L23.8209 28.1283L25.5705 28.8282L30.3484 2.3119L40.4082 5.12943L38.3693 12.4095L44.6345 14.1643L39.2321 25.6276L41.5264 24.693L47.4146 12.1128L43.5226 4.11491L29.0888 0.0723615ZM45.4201 12.4975L42.2013 5.46399L40.6088 11.15L45.4201 12.4975Z"
-            fill="black" />
-        </g>
-      </g>
-    </mask>
-    <g mask="url(#mask0_0_1)">
-      <path id="Gradient" d="M57 0H0V60H57V0Z" fill="url(#paint0_linear_0_1)" />
-    </g>
-  </g>
-  <defs>
-    <linearGradient id="paint0_linear_0_1" x1="28.5" y1="0" x2="28.5" y2="60" gradientUnits="userSpaceOnUse">
-      <stop offset="0.2" stop-color="#4F772D" />
-      <stop offset="0.7" stop-color="#90A955" />
-    </linearGradient>
-  </defs>
+<svg width="60" height="55" viewBox="0 0 60 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_736_55" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="1" y="3" width="58" height="49">
+<path d="M57.1098 44.952L33.4756 32.4398" stroke="black" stroke-width="1.7378"/>
+<path d="M2.89024 44.952L26.5244 32.4398" stroke="black" stroke-width="1.7378"/>
+<path d="M2.89024 22.7081L30 33.83L57.1098 22.7081" stroke="black" stroke-width="1.74"/>
+<path d="M30.5582 8.83203L30.0011 8.60254L2.36257 19.9414L3.41792 22.5138L29.9989 11.6088L30.0222 11.6184L30.5582 8.83203Z" fill="black"/>
+<path d="M46.3934 18.3621L56.4705 22.5132L57.5295 19.9421L47.5371 15.826L46.3934 18.3621Z" fill="black"/>
+<path d="M2.33415 19.9276L4.28049 21.3178V49.1227H55.7195V21.3178L57.6659 19.9276L58.5 21.3178V51.9032H1.5V21.3178L2.33415 19.9276Z" fill="black"/>
+<path d="M31 23.2305L39.2982 25.5326M31.2643 20.4743L40.765 23.0841M33.5 18.2703L42.1678 20.698" stroke="black" stroke-width="1.58974"/>
+<g style="mix-blend-mode:multiply">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M30.5888 3L25.3209 31.0559L27.0705 31.7558L31.8484 5.23954L41.9082 8.05707L39.8693 15.3371L46.1345 17.0919L40.7321 28.5552L43.0264 27.6206L48.9146 15.0404L45.0226 7.04255L30.5888 3ZM46.9201 15.4251L43.7013 8.39163L42.1088 14.0776L46.9201 15.4251Z" fill="black"/>
+</g>
+</mask>
+<g mask="url(#mask0_736_55)">
+<path d="M58.5 2.92761H1.5V62.9276H58.5V2.92761Z" fill="url(#paint0_linear_736_55)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_736_55" x1="30" y1="2.92761" x2="30" y2="62.9276" gradientUnits="userSpaceOnUse">
+<stop offset="0.2" stop-color="#4F772D"/>
+<stop offset="0.7" stop-color="#90A955"/>
+</linearGradient>
+</defs>
 </svg>

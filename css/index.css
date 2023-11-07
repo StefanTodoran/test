@@ -448,23 +448,28 @@ img {
   margin: 5px;
   border-radius: 7.5px;
   border: 1px solid #90A955;
-  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+  transition: 0.2s ease;
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.1254901961);
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
+.icon-button:focus,
 .icon-button:hover {
+  padding: 10px 10px 8px;
   border-color: #4F772D;
   border-radius: 8px;
   content: var(--hover-src);
   transform: scale(0.975);
   background-color: rgba(255, 255, 255, 0.6274509804);
+  outline: none !important;
 }
 
 .icon-button > img {
+  margin: 0 10px;
   flex: 1;
 }
 
@@ -473,13 +478,25 @@ img {
   margin-top: 2px;
   color: #90A955;
   font-size: calc(min(120px, 20vw) / 6);
-  transition: color 0.2s ease;
+  transition: 0.2s ease;
+  max-height: 0;
+  opacity: 0;
 }
 
+.icon-button:focus > .label,
 .icon-button:hover > .label {
   color: #4F772D;
+  max-height: 1.5em;
+  opacity: 1;
 }
 
+@media (hover: none) {
+  .icon-button > .label {
+    color: #4F772D;
+    max-height: 1.5em;
+    opacity: 1;
+  }
+}
 #intro-section {
   margin-top: 40vh;
   margin-bottom: 30vh;
