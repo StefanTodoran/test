@@ -121,12 +121,13 @@
     const projectsButton = document.getElementById("projects-btn");
     projectsButton.addEventListener("click", () => scrollTo(wrapper, projects));
 
-    const contactButton = document.getElementById("contact-btn");
-    contactButton.addEventListener("click", (evt) => {
-      evt.preventDefault();
+    const contactButton = document.getElementById("goto-contact-btn");
+    console.log(contactButton);
+    addActivationEvent(contactButton, (evt) => {
+      console.log("test");
       scrollTo(wrapper, contact);
+      evt.preventDefault();
     });
-    addActivationEvent(contactButton, () => { scrollTo(wrapper, contact) });
   }
 
   /**

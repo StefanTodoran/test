@@ -447,19 +447,21 @@ img {
   padding: 10px 10px 8px;
   margin: 5px;
   border-radius: 7.5px;
-  border: 1px solid rgba(79, 119, 45, 0.75);
-  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease;
+  border: 1px solid #90A955;
+  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
   text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.1254901961);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .icon-button:hover {
-  border: 1px solid #4F772D;
+  border-color: #4F772D;
   border-radius: 8px;
   content: var(--hover-src);
   transform: scale(0.975);
+  background-color: rgba(255, 255, 255, 0.6274509804);
 }
 
 .icon-button > img {
@@ -467,7 +469,7 @@ img {
 }
 
 .icon-button > .label {
-  font-weight: 600;
+  font-weight: 300;
   margin-top: 2px;
   color: #90A955;
   font-size: calc(min(120px, 20vw) / 6);
@@ -765,13 +767,14 @@ img {
   filter: grayscale(1);
   border: 1px solid transparent;
   transition: filter 0.5s ease, border 0.5s ease, background 0.5s ease, border-radius 0.5s ease;
-  animation: scroll 25s linear infinite, edge-fade 25s linear infinite;
-  animation-delay: calc(var(--order) * -3600ms);
+  animation: scroll 35s linear infinite, edge-fade 35s linear infinite;
+  animation-delay: calc(var(--order) * -4400ms);
+  left: 50%;
 }
 
 .client-icon:focus {
-  background-color: rgba(0, 0, 0, 0.0235294118);
-  border-color: rgba(0, 0, 0, 0.0666666667);
+  background-color: rgba(0, 0, 0, 0.0666666667);
+  border-color: rgba(0, 0, 0, 0.1333333333);
   outline: none !important;
 }
 
@@ -785,14 +788,17 @@ img {
 
 @keyframes scroll {
   0% {
-    transform: translateX(calc(-1 * min(10vw, 200px)));
+    transform: translateX(calc(-50% - 45vw));
   }
   100% {
-    transform: translateX(80vw);
+    transform: translateX(calc(-50% + 45vw));
   }
 }
 @keyframes edge-fade {
   0% {
+    opacity: 0;
+  }
+  5% {
     opacity: 0;
   }
   20% {
@@ -801,11 +807,15 @@ img {
   80% {
     opacity: 1;
   }
+  95% {
+    opacity: 0;
+  }
   100% {
     opacity: 0;
   }
 }
 #client-scroll {
+  position: relative;
   height: min(10vw, 200px);
 }
 

@@ -166,25 +166,27 @@ $btn-size: min(120px, 20vw)
   margin: 5px
 
   border-radius: 7.5px
-  border: 1px solid rgba($main-color, .75)
-  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease
+  border: 1px solid $light-color
+  transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease, background-color 0.2s ease
   text-decoration: none
+  background-color: #ffffff20
 
   display: flex
   flex-direction: column
   align-items: center
 
 .icon-button:hover
-  border: 1px solid $main-color
+  border-color: $main-color
   border-radius: 8px
   content: var(--hover-src)
   transform: scale(0.975)
+  background-color: #ffffffa0
 
 .icon-button > img
   flex: 1
 
 .icon-button > .label
-  font-weight: 600
+  font-weight: 300
   margin-top: 2px
   color: $light-color
   font-size: calc($btn-size / 6)
@@ -443,12 +445,14 @@ $icon-size: min(10vw, 200px)
   filter: grayscale(1)
   border: 1px solid transparent
   transition: filter 0.5s ease, border 0.5s ease, background 0.5s ease, border-radius 0.5s ease
-  animation: scroll 25s linear infinite, edge-fade 25s linear infinite
-  animation-delay: calc(var(--order) * -3600ms)
+  animation: scroll 35s linear infinite, edge-fade 35s linear infinite
+  animation-delay: calc(var(--order) * -4400ms)
+  // transform: translateX(-50%)
+  left: 50%
 
 .client-icon:focus
-  background-color: #00000006
-  border-color: #00000011
+  background-color: #00000011
+  border-color: #00000022
   outline: none !important
 
 .client-icon:hover
@@ -459,21 +463,28 @@ $icon-size: min(10vw, 200px)
 
 @keyframes scroll
   0%
-    transform: translateX(calc(-1 * $icon-size))
+    transform: translateX(calc(-50% - 45vw))
+    // left: calc(0px - ($icon-size * 2))
   100%
-    transform: translateX(calc(80vw))
+    transform: translateX(calc(-50% + 45vw))
+    // left: calc(100% + ($icon-size * 2))
 
 @keyframes edge-fade
   0%
+    opacity: 0
+  5%
     opacity: 0
   20%
     opacity: 1
   80%
     opacity: 1
+  95%
+    opacity: 0
   100%
     opacity: 0
 
 #client-scroll
+  position: relative
   height: $icon-size
 
 .client-tip
@@ -657,9 +668,6 @@ $icon-size: min(10vw, 200px)
   #intro-section
     margin-top: 30vh
     margin-bottom: 15vh
-
-  // .icon-button
-  //   content: var(--hover-src)
 
 @media screen and (max-width: 362px)
   .parallax-content.inverse.tiny-width-fix
