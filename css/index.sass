@@ -2,7 +2,7 @@
 
 @mixin vendor-prefix($name, $value)
   @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '')
-    #{$vendor}#{$name}: #{$value}
+    $vendo$nam: $valu
 
 html
   scroll-behavior: smooth
@@ -67,7 +67,7 @@ img
   @include vendor-prefix('text-fill-color', 'transparent')
 
 // Clickable Title Styles
-.title.clickable:not(.small), 
+.title.clickable:not(.small),
 .title.clickable::before, .title.clickable::after
   background: linear-gradient(1deg, $main-color 40%, $highlight-color 60%, $main-color 80%)
   background-size: 100% 200%
@@ -237,6 +237,85 @@ $btn-size: min(100px, 20vw)
 /* END PARALLAX SECTION */
 /* ==================== */
 
+/* ========== */
+/* FORM ITEMS */
+.form-item
+  position: relative
+  display: flex
+  flex-direction: row
+  align-items: center
+  margin: 10px 10px
+  flex: 1
+
+.form-item>.form-item-label
+  position: absolute
+  align-items: center
+  display: flex
+  top: 50%
+  left: 1em
+  transform: translateY(-50%)
+  transition: left 0.25s ease, top 0.25s ease
+
+.form-item>.form-item-label>p
+  font-size: 14px
+  white-space: nowrap
+  margin-right: .25em
+  display: inline
+  transition: font-size 0.25s ease
+  pointer-events: none
+
+.form-item.required>.form-item-label>p::after
+  content: " *"
+  color: var(--error-red)
+
+.form-item.date>.form-item-label,
+.form-item.has-content:not(.checkbox)>.form-item-label,
+.form-item:not(.checkbox):focus-within>.form-item-label
+  top: 0
+  left: 0
+  align-items: unset
+
+.form-item.date>.form-item-label>p,
+.form-item.has-content:not(.checkbox)>.form-item-label>p,
+.form-item:not(.checkbox):focus-within>.form-item-label>p
+  font-size: 10px
+
+.form-item.checkbox>.form-item-label
+  position: relative
+  top: unset
+  left: unset
+  transform: unset
+
+.form-item.checkbox
+  flex: unset
+
+.form-item.checkbox input
+  accent-color: var(--main-color)
+
+.form-field
+  background: none
+  border: none
+  padding: 1em
+  border-bottom: 1px solid var(--border-color)
+  color: var(--text-color)
+  font-weight: 400
+  color: black
+  transition: background-color 0.25s ease
+  width: 100%
+
+.form-item.has-content>.form-field,
+.form-field:focus-within
+  outline: none
+  border-bottom: 2px solid var(--main-color)
+  padding-bottom: calc(1em - 1px)
+  /* to account for the larger border */
+
+.form-field:focus-within
+  background-color: #00000003
+
+/* END FORM ITEMS */
+/* ============== */
+
 /* ======================= */
 /* DYNAMIC ITEM SECTION 💨 */
 .dynamic-item
@@ -328,6 +407,9 @@ $btn-size: min(100px, 20vw)
   align-items: center
   padding: 30vh 10vw 10vh 10vw
 
+#footer
+  pointer-events: none
+  
 .footer-row, .row
   display: flex
   flex-direction: row
@@ -335,6 +417,7 @@ $btn-size: min(100px, 20vw)
   align-items: center
   position: relative
   width: 100%
+  pointer-events: auto
 
 .footer-row
   color: #c6c8c2
@@ -523,6 +606,10 @@ $icon-size: min(10vw, 200px)
   .branch-decoration
     max-width: 60vw
 
+  #back-to-top-btn
+    max-width: 40vmin
+    max-height: 190px
+
   .client-tip
     font-size: 16px
 
@@ -545,8 +632,11 @@ $icon-size: min(10vw, 200px)
     margin-left: 2vw
     margin-right: -3vw
 
+  .plant-decoration.left.long.tiny-width-fix
+    bottom: 20vmin
+
   #back-to-top-btn
-    max-width: 20vmin
+    max-width: 30vmin
 
   .client-tip
     font-size: 12px
@@ -558,5 +648,13 @@ $icon-size: min(10vw, 200px)
   //   content: var(--hover-src)
 
 @media screen and (max-width: 362px)
+  .parallax-content.inverse.tiny-width-fix
+    max-width: 55vw
+    margin-left: 2vw
+    margin-right: -5vw
+
+  p.tiny-width-fix
+    width: 90%
+
   .title.tiny-width-fix
     font-size: 18px

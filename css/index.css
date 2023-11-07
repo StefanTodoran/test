@@ -618,6 +618,10 @@ img {
   padding: 30vh 10vw 10vh 10vw;
 }
 
+#footer {
+  pointer-events: none;
+}
+
 .footer-row, .row {
   display: flex;
   flex-direction: row;
@@ -625,6 +629,7 @@ img {
   align-items: center;
   position: relative;
   width: 100%;
+  pointer-events: auto;
 }
 
 .footer-row {
@@ -817,6 +822,10 @@ img {
   .branch-decoration {
     max-width: 60vw;
   }
+  #back-to-top-btn {
+    max-width: 40vmin;
+    max-height: 190px;
+  }
   .client-tip {
     font-size: 16px;
   }
@@ -839,8 +848,11 @@ img {
     margin-left: 2vw;
     margin-right: -3vw;
   }
+  .plant-decoration.left.long.tiny-width-fix {
+    bottom: 20vmin;
+  }
   #back-to-top-btn {
-    max-width: 20vmin;
+    max-width: 30vmin;
   }
   .client-tip {
     font-size: 12px;
@@ -850,6 +862,14 @@ img {
   }
 }
 @media screen and (max-width: 362px) {
+  .parallax-content.inverse.tiny-width-fix {
+    max-width: 55vw;
+    margin-left: 2vw;
+    margin-right: -5vw;
+  }
+  p.tiny-width-fix {
+    width: 90%;
+  }
   .title.tiny-width-fix {
     font-size: 18px;
   }
