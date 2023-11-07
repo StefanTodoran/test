@@ -77,17 +77,16 @@ def locateAll(root: str, glob: str, ignore: list[str] = None):
     return all
 
 def handleSubprocessErrors(proc):
-  pass
-  goodKeywords = ["compiled", "watching"]
-  errorKeywords = ["error", "warning"]
-  sassError = re.compile(r"[a-z]*.sass\s*\d+:\d+[a-z ]*stylesheet", re.IGNORECASE)
+  good_keywords = ["compiled", "watching", "0 errors"]
+  error_keywords = ["error", "warning"]
+  sass_error = re.compile(r"[a-z]*.sass\s*\d+:\d+[a-z ]*stylesheet", re.IGNORECASE)
 
   for rawLine in proc.stdout:
     line = rawLine.decode("utf-8").strip()
     
-    if any([word in line.lower() for word in goodKeywords]):
+    if any([word in line.lower() for word in good_keywords]):
       output(line)
-    elif any([word in line.lower() for word in errorKeywords]) or sassError.match(line):
+    elif any([word in line.lower() for word in error_keywords]) or sass_error.match(line):
       output(line, logStatus.WARN)
 
 # Found this funky little function on stack overflow:
@@ -120,17 +119,20 @@ def prepare(message: str):
 # ============== #
 # *** SERVER *** #
 
-def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, bg_proc=None, print_thread=None):
+def run(server_class=HTTPServer, handler_class=SimpleHTTPRequestHandler, bg_procs=[], print_threads=[]):
   server_address = ("", 8000)
   httpd = server_class(server_address, handler_class)
 
   try:
     httpd.serve_forever()
   except:
-    if bg_proc:
+    if len(bg_procs) > 0:
       output("Recieved keyboard interrupt, killing compiler and exiting...", logStatus.WARN)
-      bg_proc.kill()
-      print_thread.join()
+      
+      for bg_proc in bg_procs:
+        bg_proc.kill()
+      for print_thread in print_threads:
+        print_thread.join()
     else:
       output("Recieved keyboard interrupt, exiting...", logStatus.WARN)
     output("")
@@ -149,8 +151,8 @@ class NoExtensionHandler(SimpleHTTPRequestHandler):
       output("Extension added: " + self.path)
 
     # if watch and watcher.check():
-    #   output("Component file modified, injecting updated component(s)...")
-    #   injectAllComponents()
+    #   output("File modified, refreshing page...")
+    #   TODO
 
     SimpleHTTPRequestHandler.do_GET(self)
 
@@ -171,10 +173,22 @@ class FileWatcher(object):
     
     return False # file unchanged
 
+def startSubprocess(args: list, success: str, failure: str):
+  try:
+    output(success) 
+    return subprocess.Popen(args, shell=True, stdout=subprocess.PIPE)
+  except:
+    raise EnvironmentError(formatLog(failure, logStatus.FAIL))
+
 # ============ #
 # *** MAIN *** #
 
-def main(serveDocs, watchSass, watchFiles):
+def main(
+    serveDocs = False, 
+    watchSass = False, 
+    watchTypescript = False, 
+    watchFiles = False
+  ):
   global watch, watcher, directory
 
   if serveDocs:
@@ -190,21 +204,33 @@ def main(serveDocs, watchSass, watchFiles):
       files = locateAll("", "*.html") + locateAll("", "*.css") + locateAll("", "*.js")
       watcher = FileWatcher(files)
 
+    procs = []
+    if watchTypescript:
+      procs.append(startSubprocess(
+        ["npx", "tsc", "--watch"], 
+        "\nStarting tsx and watching for .ts changes...",
+        "Failed to start tsc compiler, verify installion.",
+      ))
     if watchSass:
-      try:
-        output("\nStarting sass and watching for css changes...") 
-        proc = subprocess.Popen(["sass", "--watch", "css/index.sass", "css/index.css"], shell=True, stdout=subprocess.PIPE)
-      except:
-        raise EnvironmentError(formatLog("Failed to start sass compiler, verify installion.", logStatus.FAIL))
+      procs.append(startSubprocess(
+        ["sass", "--watch", "css/index.sass", "css/index.css"], 
+        "\nStarting sass and watching for .css changes...",
+        "Failed to start sass compiler, verify installion.",
+      ))
     
     prepare("Serving from root directory...")
-    printThread = threading.Thread(target=handleSubprocessErrors, args=(proc,))
-    printThread.start()
-    run(HTTPServer, NoExtensionHandler, proc, printThread)
+    
+    print_threads = []
+    for proc in procs:
+      print_thread = threading.Thread(target=handleSubprocessErrors, args=(proc,))
+      print_thread.start()
+      print_threads.append(print_thread)
+
+    run(HTTPServer, NoExtensionHandler, procs, print_threads)
 
 
 if len(sys.argv) == 1:
-  main(False, True, True)
+  main(False, True, True, True)
 
 elif len(sys.argv) == 2:
   dir_flags = ["--docs", "-d"]

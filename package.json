@@ -1,5 +1,25 @@
 {
-  "dependencies": {
-    "sass": "^1.55.0"
+  "name": "portfolio-site",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Package used for portfolio site dependencies",
+  "main": "index.js",
+  "scripts": {
+    "dev": "python server.py",
+    "build": "node deployment/build.js",
+    "docs": "python server.py --docs",
+    "deploy": "npm version patch && node deployment/build.js && git commit -a -m \"built changes to production\" && git push"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/minify": "^9.1.4",
+    "@types/try-to-catch": "^3.0.3",
+    "fs-extra": "^10.1.0",
+    "minify": "^9.1.0",
+    "sass": "^1.55.0",
+    "try-to-catch": "^3.0.1",
+    "typescript": "^5.2.2"
   }
 }
