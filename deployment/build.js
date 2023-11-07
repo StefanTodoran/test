@@ -114,7 +114,7 @@ async function main() {
   let src = "./";
   let dest = "./docs/";
 
-  if (process.cwd().includes("build")) {
+  if (process.cwd().includes("deployment")) {
     src = "." + src;
     dest = "." + dest;
   }

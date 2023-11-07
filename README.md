@@ -46,3 +46,5 @@ Finally, the plant decorations look cool but I want the jungle to feel alive! Co
 In firefox (not an issue in chrome, need to check safari) sometimes if your mouse is within the bounding box of a parallax section during the animation, it just becomes invisible and stays that way. Seems to be an issue with firefox and animations, as opening the inspector fixes the issue, but I haven't found a workaround.
 
 The resume button used to have an issue where the `<a>` was bigger than its `<img>`. I managed to fix that, but introduced the most bizarre bug. If the window is resized to a width small enough to have the icon-buttons shrink (screen width less than 500px), the resume button's img becomes stretched horizontally, but only when not hovered. This issue persists even if the window is resized to a larger width, and even on refresh somehow??
+
+The build deployment script is broken if run from the `deployment` directory.
