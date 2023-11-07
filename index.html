@@ -23,7 +23,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&family=Rampart+One&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Rampart+One&display=swap"
     rel="stylesheet">
 </head>
 
@@ -97,12 +97,18 @@
 
     <section id="intro-section" class="parallax-section">
       <div id="intro-buttons">
-        <a tabindex="-1" href="assets/Resume.pdf" target="_blank" id="buggy-icon-button" style="margin: 5px;">
-          <img tabindex="0" class="icon-button clickable" src="assets/svg/resume_hover.svg" title="My Resume"
-            style="margin: 0;" />
+        <a href="assets/Resume.pdf" target="_blank" class="icon-button clickable">
+          <img src="assets/svg/resume.svg"/>
+          <p class="label">Resume</p>
         </a>
-        <img tabindex="0" id="contact-icon" class="icon-button clickable" src="assets/svg/contact_hover.svg"
-          title="Contact Me" />
+        <a href="https://medium.com/@todoran" target="_blank" class="icon-button clickable">
+          <img src="assets/svg/blog.svg"/>
+          <p class="label">Medium</p>
+        </a>
+        <a id="contact-btn" href="#contact-section" class="icon-button clickable">
+          <img src="assets/svg/contact.svg"/>
+          <p class="label">Contact</p>
+        </a>
       </div>
 
       <img src="assets/svg/branch-3.svg" class="branch-decoration inverse" />
@@ -189,8 +195,7 @@
           As I've developed my web design skills, both through work experience and through the Paul Allen School, I've
           started to actively seek out more clients. Not only is my freelance work a great opportunity to practice
           programming, it is also an opportunity to support local businesses which might find other website services to
-          be
-          both prohibitively expensive and lacking sufficient customization to warrant their price.
+          be both prohibitively expensive and lacking sufficient customization to warrant their price.
         </p>
         <p class="short-version">
           As I've developed my web design skills, I've started to actively seek out more clients.

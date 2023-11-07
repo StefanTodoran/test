@@ -2,7 +2,7 @@
 
 @mixin vendor-prefix($name, $value)
   @each $vendor in ('-webkit-', '-moz-', '-ms-', '-o-', '')
-    $vendo$nam: $valu
+    #{$vendor}#{$name}: #{$value}
 
 html
   scroll-behavior: smooth
@@ -157,27 +157,22 @@ img
   position: relative
   height: 10vh
 
-$btn-size: min(100px, 20vw)
-
-#buggy-icon-button
-  width: calc($btn-size + 30px)
-  height: calc($btn-size + 30px)
-
-#buggy-icon-button:focus
-  outline: none
-
-#buggy-icon-button:focus > .icon-button
-  outline: 1px solid $main-color
+$btn-size: min(120px, 20vw)
 
 .icon-button
   width: $btn-size
   height: $btn-size
-  padding: 15px
+  padding: 10px 10px 8px
   margin: 5px
 
-  border-radius: 5px
-  border: 1px solid rgba($main-color, .5)
+  border-radius: 7.5px
+  border: 1px solid rgba($main-color, .75)
   transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease
+  text-decoration: none
+
+  display: flex
+  flex-direction: column
+  align-items: center
 
 .icon-button:hover
   border: 1px solid $main-color
@@ -185,15 +180,18 @@ $btn-size: min(100px, 20vw)
   content: var(--hover-src)
   transform: scale(0.975)
 
-// #intro-section > div
-//   display: flex
-//   flex-direction: row
-//   justify-content: center
-//   width: 100%
+.icon-button > img
+  flex: 1
 
-// #intro-section
-//   margin-top: 40vh
-//   margin-bottom: 25vh
+.icon-button > .label
+  font-weight: 600
+  margin-top: 2px
+  color: $light-color
+  font-size: calc($btn-size / 6)
+  transition: color 0.2s ease
+
+.icon-button:hover > .label
+  color: $main-color
 
 #intro-section
   margin-top: 40vh
@@ -318,10 +316,13 @@ $btn-size: min(100px, 20vw)
 
 /* ======================= */
 /* DYNAMIC ITEM SECTION 💨 */
+$cubic-ease-out: cubic-bezier(.22,.61,.36,1)
+
 .dynamic-item
   opacity: 0
   transform: translateX(-30%)
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out
+  // transition: opacity 0.4s ease-out, transform 0.4s ease-out
+  transition: opacity 0.4s $cubic-ease-out, transform 0.4s $cubic-ease-out
 
 .dynamic-item.inverse
   transform: translateX(30%)
@@ -409,7 +410,7 @@ $btn-size: min(100px, 20vw)
 
 #footer
   pointer-events: none
-  
+
 .footer-row, .row
   display: flex
   flex-direction: row
@@ -613,8 +614,17 @@ $icon-size: min(10vw, 200px)
   .client-tip
     font-size: 16px
 
+  #intro-section
+    margin-top: 35vh
+    margin-bottom: 20vh
+    flex-direction: column-reverse
+
   #intro-buttons
-    flex-direction: column
+    margin-right: 0
+    margin-top: 2.5vh
+
+  #intro-section>.parallax-anchor
+    max-width: 80vw
 
 @media screen and (max-width: 425px)
   .title
@@ -643,6 +653,10 @@ $icon-size: min(10vw, 200px)
 
   .container
     padding: 30vh 5vw 10vh 5vw
+
+  #intro-section
+    margin-top: 30vh
+    margin-bottom: 15vh
 
   // .icon-button
   //   content: var(--hover-src)

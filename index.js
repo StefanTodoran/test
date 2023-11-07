@@ -11,8 +11,6 @@
     setDynamicElementsObserver();
     setUpMenu();
 
-    // preloadImage("./assets/svg/resume_hover.svg");
-    // preloadImage("./assets/svg/contact_hover.svg");
     preloadImage("./assets/svg/back-to-top_hover.svg");
 
     spawnLeaf();
@@ -20,6 +18,8 @@
 
     const loader = document.getElementById("loader-container");
     loader.classList.add("loaded");
+
+    if (isBrowserFirefox()) document.getElementById("menu-container").classList.add("firefox-fix");
   }
 
   /**
@@ -115,16 +115,18 @@
 
     const freelanceButton = document.getElementById("freelance-btn");
     // const scrollArrow = document.getElementById("scroll-arrow");
-    freelanceButton.addEventListener("click", () => { scrollTo(wrapper, freelance) });
-    // addActivationEvent(scrollArrow, () => { scrollTo(wrapper, freelance) });
+    freelanceButton.addEventListener("click", () => scrollTo(wrapper, freelance));
+    // addActivationEvent(scrollArrow, () => scrollTo(wrapper, freelance));
 
     const projectsButton = document.getElementById("projects-btn");
-    projectsButton.addEventListener("click", () => { scrollTo(wrapper, projects) });
+    projectsButton.addEventListener("click", () => scrollTo(wrapper, projects));
 
     const contactButton = document.getElementById("contact-btn");
-    const contactIcon = document.getElementById("contact-icon");
-    contactButton.addEventListener("click", () => { scrollTo(wrapper, contact) });
-    addActivationEvent(contactIcon, () => { scrollTo(wrapper, contact) });
+    contactButton.addEventListener("click", (evt) => {
+      evt.preventDefault();
+      scrollTo(wrapper, contact);
+    });
+    addActivationEvent(contactButton, () => { scrollTo(wrapper, contact) });
   }
 
   /**
@@ -224,6 +226,10 @@
     }
 
     return null;
+  }
+
+  function isBrowserFirefox() {
+    return navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
   }
 
 })();

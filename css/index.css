@@ -151,6 +151,19 @@
   animation: squeeze-d 0.5s ease forwards;
 }
 
+.firefox-fix #indicator.home {
+  cx: 83.5px;
+}
+.firefox-fix #indicator.freelance {
+  cx: 202.5px;
+}
+.firefox-fix #indicator.projects {
+  cx: 322.5px;
+}
+.firefox-fix #indicator.contact {
+  cx: 442.5px;
+}
+
 /* * All four of the following animations are
  * * the same, but we give them different names
  * * so that when the class is changed the animation
@@ -428,27 +441,18 @@ img {
   height: 10vh;
 }
 
-#buggy-icon-button {
-  width: calc(min(100px, 20vw) + 30px);
-  height: calc(min(100px, 20vw) + 30px);
-}
-
-#buggy-icon-button:focus {
-  outline: none;
-}
-
-#buggy-icon-button:focus > .icon-button {
-  outline: 1px solid #4F772D;
-}
-
 .icon-button {
-  width: min(100px, 20vw);
-  height: min(100px, 20vw);
-  padding: 15px;
+  width: min(120px, 20vw);
+  height: min(120px, 20vw);
+  padding: 10px 10px 8px;
   margin: 5px;
-  border-radius: 5px;
-  border: 1px solid rgba(79, 119, 45, 0.5);
+  border-radius: 7.5px;
+  border: 1px solid rgba(79, 119, 45, 0.75);
   transition: border 0.2s ease, border-radius 0.2s ease, transform 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .icon-button:hover {
@@ -456,6 +460,22 @@ img {
   border-radius: 8px;
   content: var(--hover-src);
   transform: scale(0.975);
+}
+
+.icon-button > img {
+  flex: 1;
+}
+
+.icon-button > .label {
+  font-weight: 600;
+  margin-top: 2px;
+  color: #90A955;
+  font-size: calc(min(120px, 20vw) / 6);
+  transition: color 0.2s ease;
+}
+
+.icon-button:hover > .label {
+  color: #4F772D;
 }
 
 #intro-section {
@@ -506,12 +526,102 @@ img {
 
 /* END PARALLAX SECTION */
 /* ==================== */
+/* ========== */
+/* FORM ITEMS */
+.form-item {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 10px 10px;
+  flex: 1;
+}
+
+.form-item > .form-item-label {
+  position: absolute;
+  align-items: center;
+  display: flex;
+  top: 50%;
+  left: 1em;
+  transform: translateY(-50%);
+  transition: left 0.25s ease, top 0.25s ease;
+}
+
+.form-item > .form-item-label > p {
+  font-size: 14px;
+  white-space: nowrap;
+  margin-right: 0.25em;
+  display: inline;
+  transition: font-size 0.25s ease;
+  pointer-events: none;
+}
+
+.form-item.required > .form-item-label > p::after {
+  content: " *";
+  color: var(--error-red);
+}
+
+.form-item.date > .form-item-label,
+.form-item.has-content:not(.checkbox) > .form-item-label,
+.form-item:not(.checkbox):focus-within > .form-item-label {
+  top: 0;
+  left: 0;
+  align-items: unset;
+}
+
+.form-item.date > .form-item-label > p,
+.form-item.has-content:not(.checkbox) > .form-item-label > p,
+.form-item:not(.checkbox):focus-within > .form-item-label > p {
+  font-size: 10px;
+}
+
+.form-item.checkbox > .form-item-label {
+  position: relative;
+  top: unset;
+  left: unset;
+  transform: unset;
+}
+
+.form-item.checkbox {
+  flex: unset;
+}
+
+.form-item.checkbox input {
+  accent-color: var(--main-color);
+}
+
+.form-field {
+  background: none;
+  border: none;
+  padding: 1em;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+  font-weight: 400;
+  color: black;
+  transition: background-color 0.25s ease;
+  width: 100%;
+}
+
+.form-item.has-content > .form-field,
+.form-field:focus-within {
+  outline: none;
+  border-bottom: 2px solid var(--main-color);
+  padding-bottom: calc(1em - 1px);
+  /* to account for the larger border */
+}
+
+.form-field:focus-within {
+  background-color: rgba(0, 0, 0, 0.0117647059);
+}
+
+/* END FORM ITEMS */
+/* ============== */
 /* ======================= */
 /* DYNAMIC ITEM SECTION 💨 */
 .dynamic-item {
   opacity: 0;
   transform: translateX(-30%);
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transition: opacity 0.4s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .dynamic-item.inverse {
@@ -829,8 +939,17 @@ img {
   .client-tip {
     font-size: 16px;
   }
+  #intro-section {
+    margin-top: 35vh;
+    margin-bottom: 20vh;
+    flex-direction: column-reverse;
+  }
   #intro-buttons {
-    flex-direction: column;
+    margin-right: 0;
+    margin-top: 2.5vh;
+  }
+  #intro-section > .parallax-anchor {
+    max-width: 80vw;
   }
 }
 @media screen and (max-width: 425px) {
@@ -859,6 +978,10 @@ img {
   }
   .container {
     padding: 30vh 5vw 10vh 5vw;
+  }
+  #intro-section {
+    margin-top: 30vh;
+    margin-bottom: 15vh;
   }
 }
 @media screen and (max-width: 362px) {
