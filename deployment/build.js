@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -8,14 +7,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const minify_1 = require("minify");
-const try_to_catch_1 = __importDefault(require("try-to-catch"));
-const fs_extra_1 = __importDefault(require("fs-extra"));
-const path_1 = __importDefault(require("path"));
+import { minify } from "minify";
+import tryToCatch from "try-to-catch";
+import fse from "fs-extra";
+import path from "path";
 function getFilesWithExtension(root, extension, useOptions) {
     const defaultOptions = {
         recursive: false,
@@ -25,13 +20,13 @@ function getFilesWithExtension(root, extension, useOptions) {
     };
     const options = Object.assign(defaultOptions, useOptions);
     const target = root + options.directory;
-    if (!fs_extra_1.default.existsSync(target)) {
+    if (!fse.existsSync(target)) {
         console.log(`(error) \x1b[91mdirectory "${target}" does not exist!\x1b[0m`);
         throw new Error("FAILED");
     }
     const files = searchDirectory(target, options.recursive, options.ignoreDirectories);
     const filtered = files.filter((file) => {
-        const ext = path_1.default.extname(file).toLowerCase();
+        const ext = path.extname(file).toLowerCase();
         if (options.ignoreUnderscored && file.startsWith('_'))
             return false;
         return ext === extension.toLowerCase();
@@ -40,12 +35,12 @@ function getFilesWithExtension(root, extension, useOptions) {
     return result;
 }
 function searchDirectory(directory, recursive, ignore) {
-    const files = fs_extra_1.default.readdirSync(directory);
+    const files = fse.readdirSync(directory);
     const results = [];
     for (const file of files) {
-        const filePath = path_1.default.join(directory, file);
-        const fileStat = fs_extra_1.default.statSync(filePath);
-        if (recursive && fileStat.isDirectory() && !ignore.includes(file)) {
+        const filePath = path.join(directory.toString(), file);
+        const fileStat = fse.statSync(filePath);
+        if (recursive && fileStat.isDirectory() && !(ignore === null || ignore === void 0 ? void 0 : ignore.includes(file))) {
             const sub = searchDirectory(filePath);
             results.push(...sub);
         }
@@ -66,7 +61,7 @@ function calculateFileSize(fileList) {
         try {
             let totalSize = 0;
             for (const filePath of fileList) {
-                const stats = yield fs_extra_1.default.stat(filePath);
+                const stats = yield fse.stat(filePath);
                 if (stats.isFile()) {
                     totalSize += stats.size;
                 }
@@ -86,7 +81,7 @@ function grabAndMinify(file) {
                 maxSize: 0,
             },
         };
-        const [error, data] = yield (0, try_to_catch_1.default)(minify_1.minify, file, options);
+        const [error, data] = yield tryToCatch(minify, file, options);
         if (error) {
             console.log("(error) \x1b[91merror occured while minifying:\x1b[0m\n" + error.message);
             throw new Error("FAILED");
@@ -103,11 +98,11 @@ function main() {
             dest = "." + dest;
         }
         console.log(`(setup) clearing ${dest} folder and contents`);
-        fs_extra_1.default.rmSync(dest, { recursive: true, force: true });
+        fse.rmSync(dest, { recursive: true, force: true });
         console.log(`(setup) creating empty ${dest} folder`);
-        fs_extra_1.default.mkdirSync(dest);
+        fse.mkdirSync(dest);
         console.log(`(setup) creating CNAME file in ${dest}`);
-        fs_extra_1.default.writeFile(dest + "CNAME", "todoran.dev");
+        fse.writeFile(dest + "CNAME", "todoran.dev");
         const cssFiles = getFilesWithExtension(src, ".css", { recursive: true, ignoreDirectories: ["docs"] });
         const htmlFiles = getFilesWithExtension(src, ".html", { recursive: true, ignoreDirectories: ["docs"] });
         const jsFiles = getFilesWithExtension(src, ".js", { recursive: true, ignoreDirectories: ["docs", "deployment"] });
@@ -119,13 +114,13 @@ function main() {
             const destFile = dest + files[i];
             const mini = yield grabAndMinify(srcFile);
             console.log(`\n(minify) read and minified ${srcFile}`);
-            fs_extra_1.default.ensureDirSync(getDirectoryName(destFile));
-            fs_extra_1.default.writeFileSync(destFile, mini);
+            fse.ensureDirSync(getDirectoryName(destFile));
+            fse.writeFileSync(destFile, mini);
             console.log(`(copy) copied ${srcFile} --> ${destFile}`);
         }
         console.log(`\n(recursive copy) ${src + "assets"} --> ${dest + "assets"}`);
-        fs_extra_1.default.copySync(src + "assets", dest + "assets", { overwrite: true });
-        let assetFiles = fs_extra_1.default.readdirSync(dest + "assets");
+        fse.copySync(src + "assets", dest + "assets", { overwrite: true });
+        let assetFiles = fse.readdirSync(dest + "assets");
         assetFiles = assetFiles.map(file => dest + "assets/" + file);
         const assetTotal = (yield calculateFileSize(assetFiles)) / 1000;
         console.log(`(result) total size of all assets: \x1b[93m${assetTotal}\x1b[0m kb`);

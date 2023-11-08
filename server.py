@@ -107,13 +107,6 @@ def prepare(message: str):
   output(banner)
   output(message)
 
-  if watch:
-    output("Searching for components to watch for changes...")
-    components = locateAll("components/", "_*.html")
-    watcher = FileWatcher(components)
-  else:
-    output("Note that components will not be watched for changes!")
-
   output("Server ready and waiting at " + link("http://localhost:8000/") + "\n", logStatus.GOOD, newLine=True)
 
 # ============== #
@@ -199,8 +192,9 @@ def main(
     run(HTTPServer, NoExtensionHandler)
   else:
 
+    prepare("Serving from root directory...")
     if watchFiles:
-      output("Searching for file to watch for changes...")
+      output("Searching for files to watch for changes...")
       files = locateAll("", "*.html") + locateAll("", "*.css") + locateAll("", "*.js")
       watcher = FileWatcher(files)
 
@@ -214,11 +208,9 @@ def main(
     if watchSass:
       procs.append(startSubprocess(
         ["sass", "--watch", "css/index.sass", "css/index.css"], 
-        "\nStarting sass and watching for .css changes...",
+        "Starting sass and watching for .css changes...\n",
         "Failed to start sass compiler, verify installion.",
       ))
-    
-    prepare("Serving from root directory...")
     
     print_threads = []
     for proc in procs:

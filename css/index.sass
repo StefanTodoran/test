@@ -86,12 +86,15 @@ img
   position: absolute
   transform: translateY(-0.1em)
   line-height: initial
-  top: 0
-
   left: 0
   right: 0
   opacity: 0
   transition: opacity 0.25s ease, left 0.25s ease, right 0.25s ease
+
+.title.clickable::before
+  top: 0
+.title.clickable::after
+  bottom: 0
 
 .title.clickable:hover::before,
 .title.clickable:focus::before
@@ -128,13 +131,13 @@ img
 .title.line-height-fix + p
   margin-top: 5px
 
-.title.clickable.line-height-fix:hover::before, .title.clickable.line-height-fix:hover::after
-  line-height: 1em
-  top: 0
-  transform: translateY(0.1em)
+// .title.clickable.line-height-fix:hover::before, .title.clickable.line-height-fix:hover::after
+//   line-height: 1em
+//   top: 0
+//   transform: translateY(0.1em)
 
-.title.clickable.line-height-fix:hover::after
-  transform: translateY(0.1em) scaleX(-1)
+// .title.clickable.line-height-fix:hover::after
+//   transform: translateY(0.1em) scaleX(-1)
 // End Line Height Fix
 
 .title.long-version
@@ -463,7 +466,7 @@ $icon-size: min(10vw, 200px)
   border: 1px solid transparent
   transition: filter 0.5s ease, border 0.5s ease, background 0.5s ease, border-radius 0.5s ease
   animation: scroll 35s linear infinite, edge-fade 35s linear infinite
-  animation-delay: calc(var(--order) * -4400ms)
+  animation-delay: calc(var(--order) * -4435ms)
   // transform: translateX(-50%)
   left: 50%
 
@@ -575,18 +578,17 @@ $icon-size: min(10vw, 200px)
 // When an element won't work well on both desktop and mobile
 // views, put two elements and give the desktop version class
 // of .long-version, and the mobile version .short-version
-.short-version
-  display: none
+
+@media screen and (min-width: 1025px)
+  .short-version
+    display: none
 
 @media screen and (max-width: 1024px)
-  .parallax-content
-    max-height: 30vh
-
   .long-version
     display: none
 
-  .short-version
-    display: block
+  .parallax-content
+    max-height: 30vh
 
   .section-break
     height: 15vh
